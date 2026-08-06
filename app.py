@@ -1,11 +1,22 @@
 from core.market import Market
+from indicators.ema import EMA
 
+# Download market data
 market = Market()
 
-candles = market.get_candles(
+df = market.get_candles(
     symbol="BTCUSDT",
     interval="60",
-    limit=10
+    limit=100
 )
 
-print(candles)
+# Calculate EMA
+ema = EMA()
+
+df = ema.calculate(
+    df,
+    period=50
+)
+
+# Display results
+print(df.tail())
