@@ -18,6 +18,7 @@ summary.display(latest)
 
 print()
 
+print(df.tail(20))
 print("==========================")
 print(" SIGNAL ANALYSIS")
 print("==========================")
