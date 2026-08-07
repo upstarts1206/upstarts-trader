@@ -1,7 +1,11 @@
 from core.pipeline import Pipeline
+from services.summary import Summary
 
 pipeline = Pipeline()
+summary = Summary()
 
 df = pipeline.run("SOLUSDT")
 
-print(df.tail())
+latest = df.iloc[-1]
+
+summary.display(latest)
