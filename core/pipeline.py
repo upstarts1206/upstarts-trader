@@ -1,6 +1,7 @@
 from core.market import Market
 from indicators.ema import EMA
 from indicators.rsi import RSI
+from indicators.macd import MACD
 
 
 class Pipeline:
@@ -13,6 +14,8 @@ class Pipeline:
 
         self.rsi = RSI()
 
+        self.macd = MACD()
+
     def run(self, symbol: str):
 
         df = self.market.get_candles(
@@ -24,5 +27,6 @@ class Pipeline:
         df = self.ema.calculate(df, period=20)
         df = self.ema.calculate(df, period=50)
         df = self.rsi.calculate(df, period=14)
+        df = self.macd.calculate(df)
 
         return df
