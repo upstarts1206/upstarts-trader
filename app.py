@@ -21,7 +21,15 @@ print(f"Position Size : {context.risk['position_size']:.4f}")
 print(f"Trade Valid   : {context.risk['valid']}")
 
 print()
+
 print("Suggested Stop Loss")
 print("-------------------")
 print(f"Price  : {context.risk['stop_loss']['price']}")
 print(f"Reason : {context.risk['stop_loss']['reason']}")
+
+print()
+
+print("Suggested Take Profit")
+print("---------------------")
+print(f"Price  : {context.risk['take_profit']['price']}")
+print(f"Reason : {context.risk['take_profit']['reason']}")

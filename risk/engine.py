@@ -1,5 +1,6 @@
 from risk.position_size import PositionSizer
 from risk.stop_loss import StopLossEngine
+from risk.take_profit import TakeProfitEngine
 
 class RiskEngine:
 
@@ -7,12 +8,12 @@ class RiskEngine:
 
         self.position_sizer = PositionSizer()
         self.stop_loss_engine = StopLossEngine()
+        self.take_profit_engine = TakeProfitEngine()
 
     def analyze(
         self,
         account_balance,
         entry,
-        take_profit,
         risk_percent,
         df,
     ):
@@ -28,7 +29,11 @@ class RiskEngine:
 
         risk_per_unit = abs(entry - stop_loss)
 
-        reward_per_unit = abs(take_profit - entry)
+        take_profit = self.take_profit_engine.calculate(df)
+
+        take_profit_price = take_profit["price"]
+
+        reward_per_unit = abs(take_profit_price - entry)
 
         if risk_per_unit == 0:
             rr = 0
@@ -50,4 +55,5 @@ class RiskEngine:
             "position_size": position_size,
             "valid": valid,
             "stop_loss": stop,
+            "take_profit": take_profit,
         }
