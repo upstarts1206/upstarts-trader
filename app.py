@@ -18,6 +18,7 @@ print(
             "choch",
             "liquidity",
             "fvg",
+            "order_block",
         ]
     ].tail(80)
 )

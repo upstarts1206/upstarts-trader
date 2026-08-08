@@ -7,6 +7,7 @@ from analysis.bos import BreakOfStructure
 from analysis.choch import ChangeOfCharacter
 from analysis.liquidity import LiquiditySweep
 from analysis.fvg import FairValueGap
+from analysis.order_block import OrderBlock
 
 
 class Pipeline:
@@ -31,6 +32,8 @@ class Pipeline:
 
         self.fvg = FairValueGap()
 
+        self.order_block = OrderBlock()
+
     def run(self, symbol: str):
 
         df = self.market.get_candles(
@@ -48,5 +51,6 @@ class Pipeline:
         df = self.choch.detect(df)
         df = self.liquidity.detect(df)
         df = self.fvg.detect(df)
+        df = self.order_block.detect(df)
 
         return df
