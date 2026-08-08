@@ -1,39 +1,75 @@
 # Upstarts Trader Backlog
 
-This document contains ideas, enhancements, and future improvements that are intentionally postponed.
-
-The purpose of this backlog is to capture ideas without disrupting the current milestone.
+> This document contains approved ideas and future enhancements that are intentionally postponed.
+>
+> The goal is to capture ideas without interrupting the current milestone.
 
 ---
 
-# High Priority
+# Current Milestone
 
-These items are expected to be part of Version 1 after the current milestone.
+Milestone 4 - Risk Engine
 
-## Fair Value Gap (FVG)
+Current Focus
+
+- Position Sizing
+- Stop Loss Engine
+- Take Profit Engine
+- Risk / Reward
+- Trade Planner
+
+⚠️ No new feature development unless it directly supports this milestone.
+
+---
+
+# High Priority (Version 1)
+
+## Risk Engine
+
+Status: Planned
+
+### Trader Profile
+
+Purpose
+
+Remove hardcoded account information from the Risk Engine.
+
+Future Features
+
+- [ ] Trader Profile
+- [ ] Account Balance
+- [ ] Maximum Risk %
+- [ ] Preferred Risk/Reward
+- [ ] Daily Max Loss
+- [ ] Weekly Max Loss
+- [ ] Monthly Goal
+
+---
+
+## Fair Value Gap
 
 Status: Planned Enhancement
 
-### Detection Methods
+Detection
 
-- [ ] Wick-to-Wick (Industry Standard)
+- [ ] Wick-to-Wick (Default)
 - [ ] Body-to-Body
 - [ ] Hybrid Detection
 
-### Quality Filters
+Filters
 
-- [ ] Minimum displacement filter
-- [ ] ATR filter
-- [ ] Volume confirmation
-- [ ] Trend alignment
+- [ ] Minimum Displacement
+- [ ] ATR Filter
+- [ ] Volume Filter
+- [ ] Trend Alignment
 
-### Lifecycle
+Lifecycle
 
-- [ ] Track mitigation
-- [ ] Track partial fills
-- [ ] Track full fills
-- [ ] Track FVG lifespan
-- [ ] Multi-timeframe FVG detection
+- [ ] Mitigation
+- [ ] Partial Fill
+- [ ] Full Fill
+- [ ] FVG Lifespan
+- [ ] Multi-Timeframe FVG
 
 ---
 
@@ -41,28 +77,27 @@ Status: Planned Enhancement
 
 Status: Planned Enhancement
 
-- [ ] Equal High detection
-- [ ] Equal Low detection
-- [ ] Session High liquidity
-- [ ] Session Low liquidity
-- [ ] Weekly High/Low liquidity
-- [ ] Monthly High/Low liquidity
-- [ ] Liquidity strength scoring
+- [ ] Equal Highs
+- [ ] Equal Lows
+- [ ] Session Liquidity
+- [ ] Weekly Liquidity
+- [ ] Monthly Liquidity
+- [ ] Liquidity Strength Score
 
 ---
 
-## Break of Structure (BOS)
+## Break of Structure
 
 Status: Planned Enhancement
 
-- [ ] Failed BOS detection
-- [ ] BOS strength scoring
+- [ ] Failed BOS
+- [ ] BOS Strength
 - [ ] Internal BOS
 - [ ] External BOS
 
 ---
 
-## Change of Character (CHOCH)
+## CHOCH
 
 Status: Planned Enhancement
 
@@ -77,25 +112,34 @@ Status: Planned Enhancement
 
 ## Trading Profiles
 
-Status: Planned Feature
-
-Purpose:
-Configure the platform based on trading style rather than strategy.
+Status: Planned
 
 Profiles
 
 - [ ] Scalping
-- [ ] Intraday
+- [ ] Day Trading
 - [ ] Swing Trading
 - [ ] Position Trading
 
-Possible Profile Settings
+Configuration
 
-- [ ] Preferred timeframes
-- [ ] Default risk percentage
-- [ ] Minimum confidence
-- [ ] Minimum Risk/Reward
-- [ ] Preferred market sessions
+- [ ] Preferred Timeframes
+- [ ] Minimum Confidence
+- [ ] Preferred Sessions
+- [ ] Default Risk
+- [ ] Minimum RR
+
+---
+
+## Multi-Timeframe Analysis
+
+Status: Planned Enhancement
+
+- [ ] Populate multiple datasets
+- [ ] Higher Timeframe Trend
+- [ ] Lower Timeframe Entry
+- [ ] Timeframe Alignment
+- [ ] Cross-Timeframe Confidence
 
 ---
 
@@ -103,14 +147,13 @@ Possible Profile Settings
 
 Status: Future Refactor
 
-Combine market structure modules into one engine.
-
 Current
 
 - BOS
 - CHOCH
 - Liquidity
 - FVG
+- Order Block
 
 Future
 
@@ -122,26 +165,23 @@ Future
 
 Status: Future Refactor
 
-Move from DataFrame columns to event objects.
+Move from DataFrame columns to Event objects.
 
-Current
-
-bos = True
-
-Future
+Examples
 
 - Bullish BOS Event
 - Bearish CHOCH Event
 - Liquidity Event
 - FVG Event
+- Order Block Event
 
 ---
 
+# Low Priority
+
 ## AI Advisor
 
-Status: Planned Feature
-
-AI should enhance—not replace—the trading engine.
+Status: Version 2
 
 Modules
 
@@ -150,63 +190,96 @@ Modules
 - [ ] Journal Assistant
 - [ ] Daily Planner
 
-Support
+Providers
 
-- [ ] Local LLM
-- [ ] OpenAI
 - [ ] Ollama
+- [ ] OpenAI
 - [ ] LM Studio
 
 ---
 
-# Low Priority
+## Desktop Dashboard
 
-## Desktop Enhancements
-
-- [ ] Custom dashboard layouts
-- [ ] Dark/Light themes
-- [ ] Multiple watchlists
+- [ ] Dockable Panels
+- [ ] Custom Layouts
+- [ ] Dark / Light Themes
+- [ ] Multiple Watchlists
 
 ---
 
 ## Analytics
 
-- [ ] Strategy comparison
-- [ ] Monthly performance reports
-- [ ] Win-rate by setup
-- [ ] Risk analytics
-- [ ] Trading journal insights
-
----
-
-# Research Ideas
-
-Ideas that should be validated through backtesting before implementation.
-
-- [ ] Compare Immediate BOS vs Confirmed BOS
-- [ ] Compare Wick vs Body FVG
-- [ ] Compare different Swing Lookbacks
-- [ ] Compare EMA combinations
-- [ ] Compare Risk models
-- [ ] Compare confidence weighting systems
-
----
-
-# Notes
-
-Remember Principle #9
-
-Capture ideas immediately.
-Implement them deliberately.
+- [ ] Strategy Comparison
+- [ ] Journal Analytics
+- [ ] Win Rate by Setup
+- [ ] Drawdown Analysis
+- [ ] Equity Curve
+- [ ] Performance Dashboard
 
 ---
 
 # Parking Lot
 
-- [ ] Multi-symbol scanner
-- [ ] Economic calendar integration
-- [ ] Broker integration
-- [ ] Mobile companion app
-- [ ] Portfolio tracker
-- [ ] Multi-account support
-- [ ] Options trading support
+Ideas that are intentionally not prioritized.
+
+- [ ] Multi-Symbol Scanner
+- [ ] Economic Calendar
+- [ ] Portfolio Tracker
+- [ ] Broker Integration
+- [ ] Mobile Companion App
+- [ ] Cloud Sync
+- [ ] Multi-Account Support
+- [ ] Options Trading
+- [ ] Forex Support
+- [ ] Futures Support
+
+---
+
+# Research Ideas
+
+These should be validated through backtesting.
+
+- [ ] Immediate BOS vs Confirmed BOS
+- [ ] Wick FVG vs Body FVG
+- [ ] Swing Lookback Comparison
+- [ ] EMA Combination Comparison
+- [ ] Risk Model Comparison
+- [ ] Confidence Weight Optimization
+
+---
+
+# Technical Debt
+
+Items intentionally postponed until after Version 1.
+
+- [ ] Replace DataFrame event columns with Event objects
+- [ ] Remove remaining magic strings
+- [ ] Improve Analyzer modularity
+- [ ] Improve logging
+- [ ] Unit Test Coverage
+- [ ] Integration Tests
+
+---
+
+# Future Vision (Version 2+)
+
+- [ ] AI-assisted Trade Planning
+- [ ] AI Journal Review
+- [ ] Automated Backtesting
+- [ ] Walk-forward Optimization
+- [ ] Monte Carlo Analysis
+- [ ] Strategy Marketplace
+
+---
+
+# Principles
+
+Before implementing any backlog item, ask:
+
+1. Does it improve trading decisions?
+2. Can it be configured?
+3. Can it be backtested?
+4. Can it be explained?
+5. Does it fit the current milestone?
+
+If not, leave it in the backlog.

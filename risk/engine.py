@@ -1,4 +1,10 @@
+from risk.position_size import PositionSizer
+
 class RiskEngine:
+
+    def __init__(self):
+
+        self.position_sizer = PositionSizer()
 
     def analyze(
         self,
@@ -22,8 +28,16 @@ class RiskEngine:
 
         valid = rr >= 2
 
+        position_size = self.position_sizer.calculate(
+            account_balance,
+            risk_percent,
+            entry,
+            stop_loss,
+        )
+
         return {
             "risk_amount": round(risk_amount, 2),
             "risk_reward": round(rr, 2),
+            "position_size": position_size,
             "valid": valid,
         }
