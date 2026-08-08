@@ -34,9 +34,9 @@ class Analyzer:
         context.risk = self.risk.analyze(
             account_balance=10000,
             entry=context.latest["close"],
-            stop_loss=context.latest["close"] * 0.99,
             take_profit=context.latest["close"] * 1.03,
             risk_percent=0.01,
+            df=context.data
         )
 
         return context
