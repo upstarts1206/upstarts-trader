@@ -9,16 +9,12 @@ analyzer = Analyzer()
 
 context = analyzer.analyze(context)
 
-print(
-    context.data[
-        [
-            "timestamp",
-            "close",
-            "bos",
-            "choch",
-            "liquidity",
-            "fvg",
-            "order_block",
-        ]
-    ].tail(80)
-)
+print()
+
+print("======================")
+print("RISK ANALYSIS")
+print("======================")
+
+print(f"Risk Amount : ${context.risk['risk_amount']}")
+print(f"Risk/Reward : {context.risk['risk_reward']}R")
+print(f"Trade Valid : {context.risk['valid']}")
