@@ -14,11 +14,10 @@ print(
         [
             "timestamp",
             "close",
-            "swing_high",
-            "swing_low",
             "bos",
             "choch",
             "liquidity",
+            "fvg",
         ]
     ].tail(80)
 )

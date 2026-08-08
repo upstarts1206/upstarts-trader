@@ -6,6 +6,7 @@ from analysis.structure import MarketStructure
 from analysis.bos import BreakOfStructure
 from analysis.choch import ChangeOfCharacter
 from analysis.liquidity import LiquiditySweep
+from analysis.fvg import FairValueGap
 
 
 class Pipeline:
@@ -28,6 +29,8 @@ class Pipeline:
 
         self.liquidity = LiquiditySweep()
 
+        self.fvg = FairValueGap()
+
     def run(self, symbol: str):
 
         df = self.market.get_candles(
@@ -44,5 +47,6 @@ class Pipeline:
         df = self.bos.detect(df)
         df = self.choch.detect(df)
         df = self.liquidity.detect(df)
+        df = self.fvg.detect(df)
 
         return df
