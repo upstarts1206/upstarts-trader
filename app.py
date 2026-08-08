@@ -1,35 +1,10 @@
-from core.pipeline import Pipeline
-from services.summary import Summary
-from services.signal import Signal
+from core.analyzer import Analyzer
+from models.market_context import MarketContext
 
-pipeline = Pipeline()
-summary = Summary()
-signal = Signal()
+context = MarketContext()
 
+context.symbol = "SOLUSDT"
 
-df = pipeline.run("SOLUSDT")
+analyzer = Analyzer()
 
-latest = df.iloc[-1]
-
-market = summary.generate(latest)
-analysis = signal.analyze(market)
-
-summary.display(latest)
-
-print()
-
-print(df.tail(20))
-print("==========================")
-print(" SIGNAL ANALYSIS")
-print("==========================")
-
-print("Signal:", analysis["signal"])
-
-print("Confidence:", f"{analysis['confidence']}%")
-
-print()
-
-print("Reasons:")
-
-for reason in analysis["reasons"]:
-    print(reason)
+context = analyzer.analyze(context)
