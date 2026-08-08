@@ -1,9 +1,10 @@
 import pandas as pd
+from config.settings import Settings
 
 
 class MarketStructure:
 
-    def find_swings(self, df: pd.DataFrame, lookback=2):
+    def find_swings(self, df: pd.DataFrame, lookback=Settings.SWING_LOOKBACK):
 
         df["swing_high"] = False
         df["swing_low"] = False

@@ -6,9 +6,13 @@ class MarketContext:
 
         self.data = None
 
+        self.timeframes = {}
+
         self.latest = None
 
         self.summary = None
+
+        self.state = None
 
         self.signal = None
 

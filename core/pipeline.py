@@ -4,6 +4,8 @@ from indicators.rsi import RSI
 from indicators.macd import MACD
 from analysis.structure import MarketStructure
 from analysis.bos import BreakOfStructure
+from analysis.choch import ChangeOfCharacter
+from analysis.liquidity import LiquiditySweep
 
 
 class Pipeline:
@@ -22,6 +24,10 @@ class Pipeline:
 
         self.bos = BreakOfStructure()
 
+        self.choch = ChangeOfCharacter()
+
+        self.liquidity = LiquiditySweep()
+
     def run(self, symbol: str):
 
         df = self.market.get_candles(
@@ -36,5 +42,7 @@ class Pipeline:
         df = self.macd.calculate(df)
         df = self.structure.find_swings(df)
         df = self.bos.detect(df)
+        df = self.choch.detect(df)
+        df = self.liquidity.detect(df)
 
         return df
