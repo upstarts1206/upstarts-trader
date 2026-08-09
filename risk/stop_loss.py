@@ -4,7 +4,10 @@ class StopLossEngine:
 
         latest = df.iloc[-1]
 
-        previous_swings = df[df["swing_low"] == True]
+        previous_swings = df[
+            (df["swing_low"] == True)
+            & (df["low"] < latest["close"])
+        ]
 
         if previous_swings.empty:
             return None

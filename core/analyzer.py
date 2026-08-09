@@ -3,6 +3,7 @@ from services.summary import Summary
 from services.signal import Signal
 from services.state import MarketState
 from risk.engine import RiskEngine
+from planner.trade_planner import TradePlanner
 
 
 class Analyzer:
@@ -18,6 +19,8 @@ class Analyzer:
         self.state = MarketState()
 
         self.risk = RiskEngine()
+
+        self.trade_planner = TradePlanner()
 
     def analyze(self, context):
 
@@ -37,5 +40,7 @@ class Analyzer:
             risk_percent=0.01,
             df=context.data
         )
+
+        context.trade_plan = self.trade_planner.build(context)
 
         return context

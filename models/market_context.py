@@ -26,6 +26,8 @@ class MarketContext:
 
         self.risk = None
 
+        self.trade_plan = None
+
         self.events = []
 
         # Trading

@@ -2,6 +2,7 @@ from risk.position_size import PositionSizer
 from risk.stop_loss import StopLossEngine
 from risk.take_profit import TakeProfitEngine
 
+
 class RiskEngine:
 
     def __init__(self):
@@ -18,20 +19,36 @@ class RiskEngine:
         df,
     ):
 
+        # -----------------------------
+        # Risk Settings
+        # -----------------------------
+
         risk_amount = account_balance * risk_percent
 
-        stop = self.stop_loss_engine.calculate(df)
+        # -----------------------------
+        # Stop Loss
+        # -----------------------------
 
-        if stop is None:
+        stop_result = self.stop_loss_engine.calculate(df)
+
+        if stop_result is None:
             return None
 
-        stop_loss = stop["price"]
+        stop_price = stop_result["price"]
 
-        risk_per_unit = abs(entry - stop_loss)
+        # -----------------------------
+        # Take Profit
+        # -----------------------------
 
-        take_profit = self.take_profit_engine.calculate(df)
+        take_profit_result = self.take_profit_engine.calculate(df)
 
-        take_profit_price = take_profit["price"]
+        take_profit_price = take_profit_result["price"]
+
+        # -----------------------------
+        # Risk / Reward
+        # -----------------------------
+
+        risk_per_unit = abs(entry - stop_price)
 
         reward_per_unit = abs(take_profit_price - entry)
 
@@ -42,18 +59,26 @@ class RiskEngine:
 
         valid = rr >= 2
 
+        # -----------------------------
+        # Position Size
+        # -----------------------------
+
         position_size = self.position_sizer.calculate(
             account_balance,
             risk_percent,
             entry,
-            stop_loss,
+            stop_price,
         )
+
+        # -----------------------------
+        # Return
+        # -----------------------------
 
         return {
             "risk_amount": round(risk_amount, 2),
             "risk_reward": round(rr, 2),
             "position_size": position_size,
             "valid": valid,
-            "stop_loss": stop,
-            "take_profit": take_profit,
+            "stop_loss": stop_result,
+            "take_profit": take_profit_result,
         }

@@ -1,23 +1,25 @@
 # Upstarts Trader Backlog
 
-> This document contains approved ideas and future enhancements that are intentionally postponed.
+> Approved features and improvements intentionally postponed.
 >
-> Principle #9:
-> Capture ideas immediately. Implement them deliberately.
+> Principle #9
+>
+> Capture ideas immediately.
+> Implement them deliberately.
 
 ---
 
 # 🚧 Current Milestone
 
-## Milestone 4 — Risk Engine
+Milestone 4 — Risk Engine
 
 Current Focus
 
 - Position Sizing
 - Dynamic Stop Loss
 - Dynamic Take Profit
-- Risk / Reward
-- Trade Planner
+- Trade Planning
+- Decision Engine
 
 Rule
 
@@ -29,20 +31,21 @@ No new features unless they directly support the current milestone.
 
 ## Risk Engine
 
-Status: Planned Enhancement
-
 ### Trader Profile
+
+Status: Planned
 
 Purpose
 
-Remove hardcoded account settings from the Risk Engine.
+Remove hardcoded trader settings.
 
 Features
 
 - [ ] Trader Profile
 - [ ] Account Balance
 - [ ] Maximum Risk %
-- [ ] Preferred Risk/Reward
+- [ ] Preferred Risk %
+- [ ] Preferred Risk / Reward
 - [ ] Daily Max Loss
 - [ ] Weekly Max Loss
 - [ ] Monthly Goal
@@ -51,7 +54,7 @@ Features
 
 ### Stop Loss Engine
 
-Status: Planned Enhancement
+Status: In Progress
 
 Current
 
@@ -59,26 +62,54 @@ Current
 
 Future
 
-- [ ] Swing High Stop (Shorts)
+- [ ] Direction-aware stops (BUY / SELL)
+- [ ] Validate stop is on the correct side of entry
+- [ ] Previous valid swing fallback
 - [ ] Order Block Stop
 - [ ] Fair Value Gap Stop
 - [ ] ATR Stop
-- [ ] Fixed Percentage Stop
+- [ ] Fixed Stop
 - [ ] Multi-Timeframe Stop
-- [ ] Configurable Stop Provider
+- [ ] Configurable Stop Providers
 
 ---
 
 ### Take Profit Engine
 
-Status: Planned
+Status: In Progress
 
-- [ ] Swing High Targets
+Current
+
+- ✅ Swing High Target
+
+Future
+
 - [ ] Liquidity Targets
+- [ ] Order Block Targets
+- [ ] Fair Value Gap Targets
 - [ ] Fixed RR Targets
 - [ ] Multi Target TP
 - [ ] Partial Take Profit
 - [ ] Trailing Take Profit
+- [ ] Configurable Take Profit Providers
+
+---
+
+### Trade Planner
+
+Status: Completed ✅
+
+Future Enhancements
+
+- [ ] Trade Decision
+- [ ] Confluence Summary
+- [ ] Strategy Name
+- [ ] Session Information
+- [ ] Trade Notes
+- [ ] Risk Warnings
+- [ ] Multi-Timeframe Summary
+- [ ] Screenshot Export
+- [ ] PDF Export
 
 ---
 
@@ -88,7 +119,7 @@ Status: Planned Enhancement
 
 Detection
 
-- [ ] Wick-to-Wick (Default)
+- [ ] Wick-to-Wick
 - [ ] Body-to-Body
 - [ ] Hybrid Detection
 
@@ -127,7 +158,7 @@ Status: Planned Enhancement
 Status: Planned Enhancement
 
 - [ ] Failed BOS
-- [ ] BOS Strength Score
+- [ ] BOS Strength
 - [ ] Internal BOS
 - [ ] External BOS
 
@@ -162,16 +193,13 @@ Configuration
 - [ ] Preferred Timeframes
 - [ ] Preferred Sessions
 - [ ] Minimum Confidence
-- [ ] Minimum Risk/Reward
+- [ ] Minimum Risk / Reward
 - [ ] Default Risk %
 
 ---
 
 ## Multi-Timeframe Analysis
 
-Status: Planned Enhancement
-
-- [ ] Populate Multiple Datasets
 - [ ] Higher Timeframe Trend
 - [ ] Lower Timeframe Entry
 - [ ] Timeframe Alignment
@@ -181,17 +209,7 @@ Status: Planned Enhancement
 
 ## Market Structure Engine
 
-Status: Future Refactor
-
-Current
-
-- BOS
-- CHOCH
-- Liquidity
-- FVG
-- Order Block
-
-Future
+Future Refactor
 
 - [ ] Unified Market Structure Engine
 
@@ -199,17 +217,9 @@ Future
 
 ## Market Events
 
-Status: Future Refactor
+Future Refactor
 
-Move away from DataFrame flags.
-
-Future
-
-- [ ] Bullish BOS Event
-- [ ] Bearish CHOCH Event
-- [ ] Liquidity Event
-- [ ] FVG Event
-- [ ] Order Block Event
+- [ ] Event Objects instead of DataFrame Flags
 
 ---
 
@@ -217,12 +227,10 @@ Future
 
 ## AI Advisor
 
-Status: Version 2
-
-Modules
+Version 2
 
 - [ ] Trading Coach
-- [ ] Daily Briefing
+- [ ] Daily Brief
 - [ ] Journal Assistant
 - [ ] Trade Reviewer
 
@@ -237,9 +245,9 @@ Providers
 ## Desktop Dashboard
 
 - [ ] Dockable Panels
-- [ ] Custom Layouts
-- [ ] Dark / Light Themes
-- [ ] Multiple Watchlists
+- [ ] Watchlists
+- [ ] Layouts
+- [ ] Themes
 
 ---
 
@@ -247,7 +255,6 @@ Providers
 
 - [ ] Strategy Comparison
 - [ ] Journal Analytics
-- [ ] Win Rate by Setup
 - [ ] Drawdown Analysis
 - [ ] Equity Curve
 - [ ] Performance Dashboard
@@ -256,29 +263,25 @@ Providers
 
 # 🅿️ Parking Lot
 
-Ideas that are intentionally postponed.
-
-- [ ] Multi-Symbol Scanner
+- [ ] Multi Symbol Scanner
 - [ ] Economic Calendar
 - [ ] Broker Integration
 - [ ] Portfolio Tracker
 - [ ] Cloud Sync
 - [ ] Mobile Companion App
-- [ ] Multi-Account Support
+- [ ] Multi Account Support
 - [ ] Options Trading
-- [ ] Forex Markets
-- [ ] Futures Markets
+- [ ] Forex
+- [ ] Futures
 
 ---
 
-# 🧪 Research Ideas
-
-Validate through backtesting.
+# 🧪 Research
 
 - [ ] Immediate BOS vs Confirmed BOS
 - [ ] Wick vs Body FVG
 - [ ] Swing Lookback Comparison
-- [ ] EMA Combination Comparison
+- [ ] EMA Comparison
 - [ ] Risk Model Comparison
 - [ ] Confidence Weight Optimization
 - [ ] Best Stop Loss Provider
@@ -287,8 +290,6 @@ Validate through backtesting.
 ---
 
 # 🔧 Technical Debt
-
-Refactor after Version 1.
 
 - [ ] Event Objects instead of DataFrame Flags
 - [ ] Remove Remaining Magic Strings
@@ -299,12 +300,12 @@ Refactor after Version 1.
 
 ---
 
-# 🌍 Future Vision (Version 2+)
+# 🌍 Future Vision
 
 - [ ] AI Trade Planner
 - [ ] AI Journal Analysis
 - [ ] Automated Backtesting
-- [ ] Walk-Forward Testing
+- [ ] Walk Forward Testing
 - [ ] Monte Carlo Analysis
 - [ ] Strategy Marketplace
 
