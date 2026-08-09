@@ -16,6 +16,8 @@ class Summary:
             "trend": trend,
             "pd_zone": latest["pd_zone"],
             "equilibrium": latest["equilibrium"],
+            "liquidity_sweep": latest["liquidity_sweep"],
+            "liquidity_side": latest["liquidity_side"],
         }
 
     def display(self, latest):

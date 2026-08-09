@@ -205,6 +205,44 @@ Future
 
 ---
 
+## Premium / Discount
+
+Status: In Progress
+
+Current
+
+- ✅ Premium Detection
+- ✅ Discount Detection
+- ✅ Equilibrium
+
+Future
+
+- [ ] Multi-Timeframe Premium/Discount
+- [ ] External Structure Premium/Discount
+- [ ] Internal Structure Premium/Discount
+- [ ] Premium/Discount Visualization
+
+---
+
+## Liquidity
+
+Status: In Progress
+
+Current
+
+- ✅ Buy-side Liquidity Sweep
+- ✅ Sell-side Liquidity Sweep
+
+Future
+
+- [ ] Equal High / Low Detection
+- [ ] Internal Liquidity
+- [ ] External Liquidity
+- [ ] Multi-Candle Sweeps
+- [ ] Multi-Timeframe Liquidity
+
+---
+
 # 🟡 Medium Priority
 
 ## Trading Profiles

@@ -19,6 +19,8 @@ class TradePlanner:
             "momentum": context.state["momentum"],
             "strength": context.state["strength"],
             "pd_zone": context.summary["pd_zone"],
+            "liquidity_sweep": context.summary["liquidity_sweep"],
+            "liquidity_side": context.summary["liquidity_side"],
 
             # -------------------------
             # Signal

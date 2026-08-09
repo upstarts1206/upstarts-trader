@@ -68,11 +68,24 @@ class ConfluenceEngine:
 
             reasons.append("Discount Zone")    
 
+        #-------------------------
+        # Liquidity Sweep
+        #-------------------------
+
+        if (
+            context.summary["liquidity_sweep"]
+            and context.summary["liquidity_side"] == "Sell Side"
+        ):
+
+            score += 1
+
+            reasons.append("Sell Side Liquidity Sweep")    
+
         return {
 
             "score": score,
 
-            "max_score": 6,
+            "max_score": 7,
 
             "strength": self.get_strength(score),
 

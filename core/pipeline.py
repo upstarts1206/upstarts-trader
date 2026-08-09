@@ -9,7 +9,7 @@ from analysis.liquidity import LiquiditySweep
 from analysis.fvg import FairValueGap
 from analysis.order_block import OrderBlock
 from analysis.premium_discount import PremiumDiscount
-
+from analysis.liquidity_sweep import LiquiditySweep
 
 class Pipeline:
 
@@ -37,6 +37,8 @@ class Pipeline:
 
         self.premium_discount = PremiumDiscount()
 
+        self.liquidity_sweep = LiquiditySweep()
+
     def run(self, symbol: str):
 
         df = self.market.get_candles(
@@ -52,9 +54,9 @@ class Pipeline:
         df = self.structure.find_swings(df)
         df = self.bos.detect(df)
         df = self.choch.detect(df)
-        df = self.liquidity.detect(df)
         df = self.fvg.detect(df)
         df = self.premium_discount.detect(df)
+        df = self.liquidity_sweep.detect(df)
         df = self.order_block.detect(df)
 
         return df

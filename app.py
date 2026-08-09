@@ -30,6 +30,13 @@ print(f"Strength       : {plan['strength']}")
 print(f"Session        : {plan['session']}")
 print(f"PD Zone        : {plan['pd_zone']}")
 
+liquidity = plan["liquidity_side"]
+
+if liquidity is None:
+    liquidity = "None"
+
+print(f"Liquidity      : {liquidity}")
+
 # -------------------------
 # Signal
 # -------------------------
