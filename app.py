@@ -60,4 +60,20 @@ print("Reasons")
 for reason in context.decision["reasons"]:
     print(reason)
 
+print()
+
+print("Validation")
+print("------------------------")
+
+if context.validation["valid"]:
+
+    print("✅ Trade Passed Validation")
+
+else:
+
+    print("❌ Trade Failed Validation")
+
+    for error in context.validation["errors"]:
+
+        print("-", error)
 print("========================================")

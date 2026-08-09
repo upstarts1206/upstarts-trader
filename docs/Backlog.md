@@ -175,6 +175,14 @@ Status: Planned Enhancement
 
 ---
 
+## Trade Validator
+
+- [ ] Direction-aware validation (BUY/SELL)
+- [ ] Strategy-specific validation
+- [ ] Multi-timeframe validation
+- [ ] Session validation
+- [ ] News event validation
+
 # 🟡 Medium Priority
 
 ## Trading Profiles
@@ -220,6 +228,36 @@ Future Refactor
 Future Refactor
 
 - [ ] Event Objects instead of DataFrame Flags
+
+---
+
+## Scanner & Notification Engine
+
+Status: Planned
+
+Scanner
+
+- [ ] Multi-symbol scanning
+- [ ] Watchlist management
+- [ ] Automatic scheduled scanning
+- [ ] Candle-close scanning
+- [ ] Configurable scan intervals
+- [ ] Scan history
+
+Notifications
+
+- [ ] Discord Webhooks
+- [ ] Telegram Bot
+- [ ] Desktop Notifications
+- [ ] Email Notifications
+- [ ] Notification History
+
+Future
+
+- [ ] Custom alert conditions
+- [ ] Per-symbol alert rules
+- [ ] Alert cooldowns
+- [ ] Alert priorities
 
 ---
 

@@ -66,7 +66,7 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 
 ---
 
-# v0.4.0 — Risk Engine (In Progress)
+# v0.4.0 — Risk Engine & Trade Planning (In Progress)
 
 ## Added
 
@@ -75,13 +75,16 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Dynamic Stop Loss Engine
 - Dynamic Take Profit Engine
 - Trade Planner
+- Decision Engine
+- Confidence Engine
 
 ## Improved
 
 - Risk / Reward calculation
 - Market structure-based stop loss
 - Market structure-based take profit
-- Separation of Risk Engine responsibilities
+- Weighted decision confidence
+- Separation of Risk, Decision, and Planning responsibilities
 
 ## Fixed
 
@@ -89,7 +92,6 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 
 ## Planned
 
-- Decision Engine
 - Trader Profile
 - Direction-aware stop loss
 - Multiple stop providers

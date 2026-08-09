@@ -5,6 +5,7 @@ from services.state import MarketState
 from risk.engine import RiskEngine
 from planner.trade_planner import TradePlanner
 from decision.engine import DecisionEngine
+from validation.trade_validator import TradeValidator
 
 
 class Analyzer:
@@ -24,6 +25,8 @@ class Analyzer:
         self.trade_planner = TradePlanner()
 
         self.decision_engine = DecisionEngine()
+
+        self.trade_validator = TradeValidator()
 
     def analyze(self, context):
 
@@ -64,5 +67,11 @@ class Analyzer:
         # -------------------------
 
          context.trade_plan = self.trade_planner.build(context)
+
+        # -------------------------
+        # Validation
+        # -------------------------
+
+         context.validation = self.trade_validator.validate(context)
 
          return context

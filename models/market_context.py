@@ -30,6 +30,8 @@ class MarketContext:
 
         self.decision = None
 
+        self.validation = None
+
         self.events = []
 
         # Trading
