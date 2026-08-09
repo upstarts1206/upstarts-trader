@@ -85,6 +85,7 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Market structure-based take profit
 - Weighted decision confidence
 - Separation of Risk, Decision, and Planning responsibilities
+- Trade quality evaluation using confluence scoring
 
 ## Fixed
 

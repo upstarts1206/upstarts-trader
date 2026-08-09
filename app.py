@@ -9,49 +9,87 @@ analyzer = Analyzer()
 
 context = analyzer.analyze(context)
 
-print()
-
-print("========================================")
-print(" UPSTARTS TRADER - TRADE PLAN ")
-print("========================================")
-
 plan = context.trade_plan
+
+print()
+print("========================================")
+print("     UPSTARTS TRADER - TRADE PLAN")
+print("========================================")
+
+# -------------------------
+# Market
+# -------------------------
+
+print("Market")
+print("------------------------")
 
 print(f"Symbol         : {plan['symbol']}")
 print(f"Trend          : {plan['trend']}")
 print(f"Momentum       : {plan['momentum']}")
 print(f"Strength       : {plan['strength']}")
+print(f"Session        : {plan['session']}")
+
+# -------------------------
+# Signal
+# -------------------------
 
 print()
+print("Signal")
+print("------------------------")
 
 print(f"Signal         : {plan['signal']}")
 print(f"Confidence     : {plan['confidence']}%")
 
+# -------------------------
+# Trade
+# -------------------------
+
 print()
+print("Trade")
+print("------------------------")
 
 print(f"Entry          : {plan['entry']}")
 print(f"Stop Loss      : {plan['stop_loss']['price']}")
 print(f"Take Profit    : {plan['take_profit']['price']}")
 
+# -------------------------
+# Risk
+# -------------------------
+
 print()
+print("Risk")
+print("------------------------")
 
 print(f"Risk/Reward    : {plan['risk_reward']}R")
 print(f"Position Size  : {plan['position_size']:.4f}")
-
-print()
-
 print(f"Valid Trade    : {plan['valid_trade']}")
 
-plan = context.trade_plan
+# -------------------------
+# Confluence
+# -------------------------
+
+print()
+print("Confluence")
+print("------------------------")
+
+print(f"Strength       : {plan['confluence']['strength']}")
+print(f"Score          : {plan['confluence']['score']}/{plan['confluence']['max_score']}")
 
 print()
 
+for reason in plan["confluence"]["reasons"]:
+    print(f"✓ {reason}")
+
+# -------------------------
+# Decision
+# -------------------------
+
+print()
 print("Decision")
 print("------------------------")
 
-print("Action :", plan["decision"])
-
-print(f"Confidence : {plan['decision_confidence']}%")
+print(f"Action         : {plan['decision']}")
+print(f"Confidence     : {plan['decision_confidence']}%")
 
 print()
 
@@ -60,8 +98,11 @@ print("Reasons")
 for reason in context.decision["reasons"]:
     print(reason)
 
-print()
+# -------------------------
+# Validation
+# -------------------------
 
+print()
 print("Validation")
 print("------------------------")
 
@@ -75,5 +116,7 @@ else:
 
     for error in context.validation["errors"]:
 
-        print("-", error)
+        print(f"- {error}")
+
+print()
 print("========================================")

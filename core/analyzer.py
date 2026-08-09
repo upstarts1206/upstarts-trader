@@ -1,3 +1,5 @@
+from multiprocessing import context
+
 from core.pipeline import Pipeline
 from services.summary import Summary
 from services.signal import Signal
@@ -6,6 +8,8 @@ from risk.engine import RiskEngine
 from planner.trade_planner import TradePlanner
 from decision.engine import DecisionEngine
 from validation.trade_validator import TradeValidator
+from confluence.engine import ConfluenceEngine
+from sessions.engine import SessionEngine
 
 
 class Analyzer:
@@ -22,11 +26,15 @@ class Analyzer:
 
         self.risk = RiskEngine()
 
+        self.session_engine = SessionEngine()        
+
         self.trade_planner = TradePlanner()
 
         self.decision_engine = DecisionEngine()
 
         self.trade_validator = TradeValidator()
+
+        self.confluence_engine = ConfluenceEngine()
 
     def analyze(self, context):
 
@@ -55,6 +63,18 @@ class Analyzer:
             risk_percent=0.01,
             df=context.data
         )
+
+        # -------------------------
+        # Session
+        # -------------------------
+
+         context.session = self.session_engine.detect()
+
+        # -------------------------
+        # Confluence
+        # -------------------------
+
+         context.confluence = self.confluence_engine.analyze(context)         
 
         # -------------------------
         # Decision

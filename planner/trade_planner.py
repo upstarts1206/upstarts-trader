@@ -9,7 +9,6 @@ class TradePlanner:
             # -------------------------
 
             "symbol": context.symbol,
-
             "entry": round(context.latest["close"], 2),
 
             # -------------------------
@@ -37,11 +36,23 @@ class TradePlanner:
             "position_size": context.risk["position_size"],
             "valid_trade": context.risk["valid"],
 
+            #-------------------------
+            # Session
+            # -------------------------
+
+            "session": context.session,
+
             # -------------------------
             # Decision
             # -------------------------
 
             "decision": context.decision["decision"],
             "decision_confidence": context.decision["confidence"],
+
+            # -------------------------
+            # Confluence
+            # -------------------------
+
+            "confluence": context.confluence,
 
         }

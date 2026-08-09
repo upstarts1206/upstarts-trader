@@ -12,6 +12,10 @@ class MarketContext:
 
         self.timeframes = {}
 
+        # Market Session
+
+        self.session = None
+
         # Current Candle
 
         self.latest = None
@@ -31,6 +35,8 @@ class MarketContext:
         self.decision = None
 
         self.validation = None
+
+        self.confluence = None
 
         self.events = []
 

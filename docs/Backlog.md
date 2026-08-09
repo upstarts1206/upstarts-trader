@@ -183,6 +183,28 @@ Status: Planned Enhancement
 - [ ] Session validation
 - [ ] News event validation
 
+---
+
+## Confluence Engine
+
+Status: In Progress
+
+Current
+
+- ✅ Confluence Score
+- ✅ Confluence Strength
+
+Future
+
+- [ ] Liquidity Sweep Confluence
+- [ ] Order Block Confluence
+- [ ] Premium / Discount Confluence
+- [ ] Multi-Timeframe Confluence
+- [ ] Strategy-specific Confluence
+- [ ] Weighted Confluence Scoring
+
+---
+
 # 🟡 Medium Priority
 
 ## Trading Profiles
@@ -258,6 +280,19 @@ Future
 - [ ] Per-symbol alert rules
 - [ ] Alert cooldowns
 - [ ] Alert priorities
+
+---
+
+## Session Awareness
+
+Status: Planned Enhancement
+
+- [x] Current Session Detection
+- [ ] London/New York Overlap
+- [ ] Weekend Detection
+- [ ] Holiday Detection
+- [ ] Session Volatility Profiles
+- [ ] User-configurable Sessions
 
 ---
 
