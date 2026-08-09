@@ -42,4 +42,22 @@ print()
 
 print(f"Valid Trade    : {plan['valid_trade']}")
 
+plan = context.trade_plan
+
+print()
+
+print("Decision")
+print("------------------------")
+
+print("Action :", plan["decision"])
+
+print(f"Score  : {plan['decision_score']}/3")
+
+print()
+
+print("Reasons")
+
+for reason in context.decision["reasons"]:
+    print(reason)
+
 print("========================================")

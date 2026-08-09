@@ -28,6 +28,8 @@ class MarketContext:
 
         self.trade_plan = None
 
+        self.decision = None
+
         self.events = []
 
         # Trading

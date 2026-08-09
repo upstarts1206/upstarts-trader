@@ -4,6 +4,7 @@ from services.signal import Signal
 from services.state import MarketState
 from risk.engine import RiskEngine
 from planner.trade_planner import TradePlanner
+from decision.engine import DecisionEngine
 
 
 class Analyzer:
@@ -22,25 +23,46 @@ class Analyzer:
 
         self.trade_planner = TradePlanner()
 
+        self.decision_engine = DecisionEngine()
+
     def analyze(self, context):
 
-        context.data = self.pipeline.run(context.symbol)
+        # -------------------------
+        # Market Data
+        # -------------------------
 
-        context.latest = context.data.iloc[-1]
+         context.data = self.pipeline.run(context.symbol)
+         context.latest = context.data.iloc[-1]
 
-        context.summary = self.summary.generate(context.latest)
+        # -------------------------
+        # Analysis
+        # -------------------------
 
-        context.state = self.state.generate(context.summary)
+         context.summary = self.summary.generate(context.latest)
+         context.state = self.state.generate(context.summary)
+         context.signal = self.signal.analyze(context.summary)
 
-        context.signal = self.signal.analyze(context.summary)
+        # -------------------------
+        # Risk
+        # -------------------------
 
-        context.risk = self.risk.analyze(
+         context.risk = self.risk.analyze(
             account_balance=10000,
             entry=context.latest["close"],
             risk_percent=0.01,
             df=context.data
         )
 
-        context.trade_plan = self.trade_planner.build(context)
+        # -------------------------
+        # Decision
+        # -------------------------
 
-        return context
+         context.decision = self.decision_engine.decide(context)
+
+        # -------------------------
+        # Trade Plan
+        # -------------------------
+
+         context.trade_plan = self.trade_planner.build(context)
+
+         return context
