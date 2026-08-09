@@ -38,6 +38,8 @@ class MarketContext:
 
         self.confluence = None
 
+        self.setup = None
+
         self.events = []
 
         # Trading

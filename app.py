@@ -89,6 +89,17 @@ for reason in plan["confluence"]["reasons"]:
     print(f"✓ {reason}")
 
 # -------------------------
+# Setup
+# -------------------------
+
+print()
+print("Setup")
+print("------------------------")
+
+print(f"Name           : {plan['setup']['name']}")
+print(f"Quality        : {plan['setup']['quality']}")
+
+# -------------------------
 # Decision
 # -------------------------
 

@@ -46,16 +46,22 @@ class TradePlanner:
             "session": context.session,
 
             # -------------------------
+            # Confluence
+            # -------------------------
+
+            "confluence": context.confluence,
+
+            # -------------------------
+            # Setup
+            # -------------------------
+
+            "setup": context.setup,
+
+            # -------------------------
             # Decision
             # -------------------------
 
             "decision": context.decision["decision"],
             "decision_confidence": context.decision["confidence"],
-
-            # -------------------------
-            # Confluence
-            # -------------------------
-
-            "confluence": context.confluence,
 
         }

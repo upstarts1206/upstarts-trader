@@ -10,6 +10,7 @@ from decision.engine import DecisionEngine
 from validation.trade_validator import TradeValidator
 from confluence.engine import ConfluenceEngine
 from sessions.engine import SessionEngine
+from setups.engine import SetupEngine
 
 
 class Analyzer:
@@ -26,7 +27,9 @@ class Analyzer:
 
         self.risk = RiskEngine()
 
-        self.session_engine = SessionEngine()        
+        self.session_engine = SessionEngine()
+
+        self.setup_engine = SetupEngine()
 
         self.trade_planner = TradePlanner()
 
@@ -74,7 +77,13 @@ class Analyzer:
         # Confluence
         # -------------------------
 
-         context.confluence = self.confluence_engine.analyze(context)         
+         context.confluence = self.confluence_engine.analyze(context) 
+
+        # ------------------------
+        # Setup
+        # ------------------------
+        
+         context.setup = self.setup_engine.detect(context)
 
         # -------------------------
         # Decision
