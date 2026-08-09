@@ -1,43 +1,50 @@
+from decision.confidence import ConfidenceEngine
+
+
 class DecisionEngine:
+
+    def __init__(self):
+
+        self.confidence_engine = ConfidenceEngine()
 
     def decide(self, context):
 
-        reasons = []
+        # -------------------------
+        # Confidence
+        # -------------------------
 
-        score = 0
+        confidence_result = self.confidence_engine.calculate(context)
 
-        # Trend
-        if context.state["trend"] == "Bullish":
-            score += 1
-            reasons.append("✓ Higher trend is Bullish")
-        else:
-            reasons.append("✗ Higher trend is not Bullish")
+        confidence = confidence_result["confidence"]
 
-        # Signal
-        if context.signal["signal"] == "BUY":
-            score += 1
-            reasons.append("✓ Signal is BUY")
-        else:
-            reasons.append("✗ Signal is WAIT")
+        reasons = confidence_result["reasons"]
 
-        # Risk
-        if context.risk["valid"]:
-            score += 1
-            reasons.append("✓ Risk/Reward is acceptable")
-        else:
-            reasons.append("✗ Risk/Reward is below minimum")
+        # -------------------------
+        # Decision
+        # -------------------------
 
-        if score == 3:
+        if confidence >= 80:
+
             decision = "BUY"
 
-        elif score == 2:
+        elif confidence >= 60:
+
             decision = "WAIT"
 
         else:
+
             decision = "SKIP"
 
+        # -------------------------
+        # Return
+        # -------------------------
+
         return {
+
             "decision": decision,
-            "score": score,
+
+            "confidence": confidence,
+
             "reasons": reasons,
+
         }

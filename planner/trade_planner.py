@@ -42,6 +42,6 @@ class TradePlanner:
             # -------------------------
 
             "decision": context.decision["decision"],
-            "decision_score": context.decision["score"],
+            "decision_confidence": context.decision["confidence"],
 
         }

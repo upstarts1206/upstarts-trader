@@ -51,7 +51,7 @@ print("------------------------")
 
 print("Action :", plan["decision"])
 
-print(f"Score  : {plan['decision_score']}/3")
+print(f"Confidence : {plan['decision_confidence']}%")
 
 print()
 
