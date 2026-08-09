@@ -18,6 +18,7 @@ class TradePlanner:
             "trend": context.state["trend"],
             "momentum": context.state["momentum"],
             "strength": context.state["strength"],
+            "pd_zone": context.summary["pd_zone"],
 
             # -------------------------
             # Signal

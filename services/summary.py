@@ -14,6 +14,8 @@ class Summary:
             "rsi": float(latest["RSI_14"]),
             "macd": float(latest["MACD"]),
             "trend": trend,
+            "pd_zone": latest["pd_zone"],
+            "equilibrium": latest["equilibrium"],
         }
 
     def display(self, latest):

@@ -58,11 +58,21 @@ class ConfluenceEngine:
 
             reasons.append("Bullish FVG")
 
+        #-------------------------
+        # Premium/Discount Zone
+        #-------------------------
+
+        if context.summary["pd_zone"] == "Discount":
+
+            score += 1
+
+            reasons.append("Discount Zone")    
+
         return {
 
             "score": score,
 
-            "max_score": 5,
+            "max_score": 6,
 
             "strength": self.get_strength(score),
 

@@ -28,6 +28,7 @@ print(f"Trend          : {plan['trend']}")
 print(f"Momentum       : {plan['momentum']}")
 print(f"Strength       : {plan['strength']}")
 print(f"Session        : {plan['session']}")
+print(f"PD Zone        : {plan['pd_zone']}")
 
 # -------------------------
 # Signal

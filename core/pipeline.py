@@ -8,6 +8,7 @@ from analysis.choch import ChangeOfCharacter
 from analysis.liquidity import LiquiditySweep
 from analysis.fvg import FairValueGap
 from analysis.order_block import OrderBlock
+from analysis.premium_discount import PremiumDiscount
 
 
 class Pipeline:
@@ -34,6 +35,8 @@ class Pipeline:
 
         self.order_block = OrderBlock()
 
+        self.premium_discount = PremiumDiscount()
+
     def run(self, symbol: str):
 
         df = self.market.get_candles(
@@ -51,6 +54,7 @@ class Pipeline:
         df = self.choch.detect(df)
         df = self.liquidity.detect(df)
         df = self.fvg.detect(df)
+        df = self.premium_discount.detect(df)
         df = self.order_block.detect(df)
 
         return df
