@@ -1,45 +1,9 @@
 class ConfidenceEngine:
 
-    def calculate(self, context):
+    def calculate(self, score):
 
-        score = 0
+        """
+        Convert a weighted decision score into a confidence percentage.
+        """
 
-        reasons = []
-
-        # -------------------------
-        # Trend
-        # -------------------------
-
-        if context.state["trend"] == "Bullish":
-
-            score += 40
-
-            reasons.append("+40 Trend is Bullish")
-
-        # -------------------------
-        # Signal
-        # -------------------------
-
-        if context.signal["signal"] == "BUY":
-
-            score += 35
-
-            reasons.append("+35 BUY Signal")
-
-        # -------------------------
-        # Risk
-        # -------------------------
-
-        if context.risk["valid"]:
-
-            score += 25
-
-            reasons.append("+25 Risk Accepted")
-
-        return {
-
-            "confidence": score,
-
-            "reasons": reasons
-
-        }
+        return max(0, min(score, 100))

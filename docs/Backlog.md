@@ -243,6 +243,27 @@ Future
 
 ---
 
+## Setup Engine
+
+Status: In Progress
+
+Current
+
+- ✅ Bullish Continuation
+- ✅ Wait for Pullback
+- ✅ No Valid Setup
+
+Future
+
+- [ ] Liquidity Grab Reversal
+- [ ] Breakout Retest
+- [ ] Range Expansion
+- [ ] Trend Exhaustion
+- [ ] Strategy-specific Setups
+- [ ] Setup Confidence Scoring
+
+---
+
 # 🟡 Medium Priority
 
 ## Trading Profiles
@@ -331,6 +352,24 @@ Status: Planned Enhancement
 - [ ] Holiday Detection
 - [ ] Session Volatility Profiles
 - [ ] User-configurable Sessions
+
+---
+
+## Decision Engine
+
+Status: In Progress
+
+Current
+
+- ✅ Weighted Scoring
+- ✅ Confidence Percentage
+
+Future
+
+- [ ] Strategy-specific Weights
+- [ ] Dynamic Market Weights
+- [ ] AI Weight Optimization
+- [ ] Historical Performance Weighting
 
 ---
 

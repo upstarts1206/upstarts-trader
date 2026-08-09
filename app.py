@@ -108,6 +108,7 @@ print("Decision")
 print("------------------------")
 
 print(f"Action         : {plan['decision']}")
+print(f"Score          : {context.decision['score']}/100")
 print(f"Confidence     : {plan['decision_confidence']}%")
 
 print()
