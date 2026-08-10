@@ -4,12 +4,23 @@ from presentation.console_view import ConsoleView
 from summary.scan_summary import ScanSummary
 from filters.trade_filter import TradeFilter
 from ranking.trade_ranker import TradeRanker
+from scheduler.scan_scheduler import ScanScheduler
 
 # Scanner 
 
-scanner = Scanner()
+scheduler = ScanScheduler()
 
-scan = scanner.scan(WATCHLIST)
+if scheduler.should_scan():
+
+    scanner = Scanner()
+
+    scan = scanner.scan(WATCHLIST)
+
+    scheduler.mark_scan_complete()
+
+else:
+
+    print("Skipping scan.")
 
 results = scan["results"]
 
@@ -19,7 +30,7 @@ errors = scan["errors"]
 
 scan_summary = ScanSummary()
 
-summary = scan_summary.generate(results, errors)
+summary = scan_summary.generate(results, errors, scheduler)
 
 # Filter
 

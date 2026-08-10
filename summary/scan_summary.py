@@ -1,6 +1,6 @@
 class ScanSummary:
 
-    def generate(self, results, errors):
+    def generate(self, results, errors, scheduler):
 
         summary = {
 
@@ -17,6 +17,8 @@ class ScanSummary:
             "highest_confidence": 0,
 
             "average_confidence": 0,
+
+            "next_scan": scheduler.next_scan_time(),
 
         }
 

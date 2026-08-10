@@ -48,6 +48,8 @@ class Settings:
 
     MIN_DECISION = "BUY"
 
+    SCAN_INTERVAL_MINUTES = 15
+
     # -------------------------
     # Ranking
     # -------------------------

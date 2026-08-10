@@ -409,6 +409,36 @@ Future
 
 ---
 
+## Scheduler
+
+Status: In Progress
+
+Current
+
+- ✅ Scheduler abstraction
+- ✅ Manual scheduling mode
+- ✅ Scheduler abstraction
+- ✅ Configurable scan interval
+- ✅ Next scan calculation
+
+Next
+
+- [ ] Scheduled execution
+- [ ] Session-aware scheduling
+- [ ] Pause / Resume
+- [ ] Continuous scheduler loop
+- [ ] Persistent last scan
+- [ ] Session-aware scheduling
+
+Future
+
+- [ ] Holiday calendars
+- [ ] Exchange maintenance windows
+- [ ] Cron expressions
+- [ ] Exchange calendars
+
+---
+
 # 🟡 Medium Priority
 
 ## Trading Profiles

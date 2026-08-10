@@ -230,6 +230,9 @@ class ConsoleView:
         print(f"Highest Confidence  : {summary['highest_confidence']}%")
         print(f"Average Confidence  : {summary['average_confidence']}%")
 
+        print()
+        print(f"Next Scan           : {summary['next_scan']}")
+
         print("=" * 50)
 
     def display_top_trade(self, context):
