@@ -77,6 +77,8 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Trade Planner
 - Decision Engine
 - Confidence Engine
+- Watchlist Architecture
+- Scanner Engine
 
 ## Improved
 
@@ -86,6 +88,7 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Weighted decision confidence
 - Separation of Risk, Decision, and Planning responsibilities
 - Trade quality evaluation using confluence scoring
+- Analyzer can now process multiple symbols through a unified scanner
 
 ## Fixed
 

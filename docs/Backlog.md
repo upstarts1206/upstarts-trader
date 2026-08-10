@@ -264,6 +264,31 @@ Future
 
 ---
 
+## Scanner
+
+Status: In Progress
+
+Current
+
+- ✅ Default Watchlist
+- ✅ Scanner Engine
+
+Next
+
+- [ ] Scan Entire Watchlist
+- [ ] Filter Trade Candidates
+- [ ] Sort by Confidence
+- [ ] Scheduler
+- [ ] Notification Providers
+
+Future
+
+- [ ] Custom Watchlists
+- [ ] Dynamic Watchlists
+- [ ] Sector-based Watchlists
+
+---
+
 # 🟡 Medium Priority
 
 ## Trading Profiles
