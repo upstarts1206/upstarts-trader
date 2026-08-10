@@ -1,51 +1,13 @@
-from scanner.scanner import Scanner
-from watchlists.default import WATCHLIST
-from presentation.console_view import ConsoleView
-from summary.scan_summary import ScanSummary
-from filters.trade_filter import TradeFilter
-from ranking.trade_ranker import TradeRanker
-from scheduler.scan_scheduler import ScanScheduler
+from automation.automation_runner import AutomationRunner
 
-# Scanner 
 
-scheduler = ScanScheduler()
+def main():
 
-if scheduler.should_scan():
+    runner = AutomationRunner()
 
-    scanner = Scanner()
+    runner.run_once()
 
-    scan = scanner.scan(WATCHLIST)
 
-    scheduler.mark_scan_complete()
+if __name__ == "__main__":
 
-else:
-
-    print("Skipping scan.")
-
-results = scan["results"]
-
-errors = scan["errors"]
-
-# Summary
-
-scan_summary = ScanSummary()
-
-summary = scan_summary.generate(results, errors, scheduler)
-
-# Filter
-
-trade_filter = TradeFilter()
-
-results = trade_filter.filter(results)
-
-# Ranking
-
-ranker = TradeRanker()
-
-results = ranker.rank(results)
-
-# Final Output
-
-view = ConsoleView()
-
-view.display(results, summary, errors)
+    main()

@@ -439,6 +439,40 @@ Future
 
 ---
 
+## Automation Control
+
+Status: Planned
+
+- [ ] Enable / Disable scanner
+- [ ] Manual "Scan Now"
+- [ ] Automation status
+- [ ] Last scan timestamp
+- [ ] Next scan timestamp
+
+---
+
+## Automation Runner
+
+Status: In Progress
+
+Current
+
+- ✅ Single execution runner
+
+Next
+
+- [ ] Continuous execution
+- [ ] Graceful shutdown
+- [ ] Pause / Resume
+- [ ] Background mode
+
+Future
+
+- [ ] Windows Service
+- [ ] Linux Daemon
+
+---
+
 # 🟡 Medium Priority
 
 ## Trading Profiles
@@ -596,6 +630,18 @@ Future
 - [ ] Strategy Profiles
 - [ ] Desktop Configuration
 - [ ] Import / Export
+
+---
+
+## Trade Inspector
+
+Status: Planned
+
+- [ ] Candidate list
+- [ ] Select a trade
+- [ ] Full trade analysis
+- [ ] Open chart
+- [ ] View confluence details
 
 ---
 

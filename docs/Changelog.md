@@ -94,6 +94,7 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Manual scheduling abstraction
 - Configurable scan interval
 - Dynamic next scan calculation
+- AutomationRunner abstraction
 
 
 ## Improved
@@ -112,6 +113,7 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Scanner now completes scans even when individual symbols fail.
 - Scan execution now routes through the scheduler.
 - Scheduler now derives timing from application settings.
+- Application execution is now separated from scheduling.
 
 
 ## Fixed
