@@ -1,3 +1,5 @@
+import time
+
 from scanner.scanner import Scanner
 from scheduler.scan_scheduler import ScanScheduler
 from summary.scan_summary import ScanSummary
@@ -27,9 +29,27 @@ class AutomationRunner:
 
         if not self.scheduler.should_scan():
 
-            print("Skipping scan.")
-
             return
+
+        self.execute_scan()
+
+    def run_forever(self):
+
+        print()
+        print("========================================")
+        print(" UPSTARTS TRADER AUTOMATION STARTED")
+        print("========================================")
+        print()
+
+        while True:
+
+            if self.scheduler.should_scan():
+
+                self.execute_scan()
+
+            time.sleep(1)
+
+    def execute_scan(self):
 
         scan = self.scanner.scan(WATCHLIST)
 

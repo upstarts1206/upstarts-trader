@@ -460,10 +460,10 @@ Current
 - ✅ Single execution runner
 - ✅ Workflow orchestration
 - ✅ Scheduler integration
+- ✅ Continuous execution
 
 Next
 
-- [ ] Continuous execution
 - [ ] Graceful shutdown
 - [ ] Pause / Resume
 - [ ] Background mode
@@ -473,6 +473,7 @@ Future
 - [ ] Windows Service
 - [ ] Linux Daemon
 - [ ] Docker deployment
+- [ ] Cloud deployment
 
 ---
 

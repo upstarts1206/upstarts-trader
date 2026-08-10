@@ -96,6 +96,8 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Dynamic next scan calculation
 - AutomationRunner abstraction
 - AutomationRunner workflow orchestration.
+- Continuous automation mode.
+- Shared scan execution pipeline.
 
 
 ## Improved
@@ -116,6 +118,7 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Scheduler now derives timing from application settings.
 - Application execution is now separated from scheduling.
 - Simplified application entry point.
+- AutomationRunner now supports both single-run and continuous execution.
 
 
 ## Fixed
