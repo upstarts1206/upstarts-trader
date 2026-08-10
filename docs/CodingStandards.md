@@ -271,6 +271,11 @@ Avoid
 
 Hardcoded values are acceptable temporarily during development but should eventually move into Settings or user-configurable profiles.
 
+Always import the Settings class.
+
+```python
+from config.settings import Settings
+
 ---
 
 # Constants

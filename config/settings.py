@@ -1,6 +1,8 @@
 class Settings:
 
+    # -------------------------
     # Market
+    # -------------------------
 
     SYMBOL = "SOLUSDT"
 
@@ -10,7 +12,9 @@ class Settings:
         "240"
     ]
 
+    # -------------------------
     # Indicators
+    # -------------------------
 
     EMA_FAST = 20
     EMA_SLOW = 50
@@ -21,12 +25,43 @@ class Settings:
     MACD_SLOW = 26
     MACD_SIGNAL = 9
 
+    # -------------------------
     # Structure
+    # -------------------------
 
     SWING_LOOKBACK = 2
-
     BOS_CONFIRMATION = "immediate"
 
+    # -------------------------
     # Risk
+    # -------------------------
 
     DEFAULT_RISK = 0.01
+
+    MIN_RISK_REWARD = 2.0
+
+    # -------------------------
+    # Scanner
+    # -------------------------
+
+    WATCHLIST_NAME = "Default"
+
+    MIN_DECISION = "BUY"
+
+    # -------------------------
+    # Ranking
+    # -------------------------
+
+    CONFIDENCE_WEIGHT = 1.0
+
+    CONFLUENCE_WEIGHT = 10
+
+    RISK_REWARD_WEIGHT = 10
+
+    # -------------------------
+    # Display
+    # -------------------------
+
+    SHOW_SCAN_SUMMARY = True
+
+    SHOW_TOP_TRADE = True

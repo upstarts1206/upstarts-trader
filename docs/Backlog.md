@@ -289,6 +289,126 @@ Future
 
 ---
 
+## Presentation Layer
+
+Status: In Progress
+
+Current
+
+- ✅ Console View
+
+Next
+
+- [ ] Discord View
+- [ ] Telegram View
+- [ ] HTML Dashboard
+- [ ] JSON Export
+
+Future
+
+- [ ] Rich Terminal UI
+- [ ] Web Dashboard
+
+---
+
+## Trade Filter
+
+Status: In Progress
+
+Current
+
+- ✅ Filter by BUY decision
+
+Next
+
+- [ ] Minimum confidence filter
+- [ ] Minimum confluence filter
+- [ ] Minimum risk/reward filter
+- [ ] Session filter
+- [ ] Strategy filter
+
+Future
+
+- [ ] User-configurable filters
+- [ ] Saved filter presets
+
+---
+
+## Scan Summary
+
+Status: In Progress
+
+Current
+
+- ✅ Symbols Scanned
+- ✅ BUY / WAIT / SKIP Counts
+- ✅ Highest Confidence
+- ✅ Average Confidence
+
+Next
+
+- [ ] Scan Duration
+- [ ] Filter Pass Rate
+- [ ] Best Setup
+- [ ] Average Risk/Reward
+- [ ] Symbols per Second
+
+Future
+
+- [ ] Historical Scan Analytics
+- [ ] Daily Scanner Statistics
+
+---
+
+## Trade Ranking
+
+Status: In Progress
+
+Current
+
+- ✅ Decision confidence ranking
+- ✅ Confluence weighting
+- ✅ Risk/Reward weighting
+
+Next
+
+- [ ] Session weighting
+- [ ] Strategy weighting
+- [ ] Liquidity weighting
+- [ ] Market regime weighting
+
+Future
+
+- [ ] AI-assisted ranking
+- [ ] Personalized ranking profiles
+
+---
+
+## Fault Tolerance
+
+Status: In Progress
+
+Current
+
+- ✅ Per-symbol exception handling
+- ✅ Continue scanning after failures
+- ✅ Failed symbol reporting
+
+Next
+
+- [ ] Retry failed symbols
+- [ ] Timeout handling
+- [ ] Rate limit handling
+- [ ] Scan duration tracking
+
+Future
+
+- [ ] Exchange failover
+- [ ] Health monitoring
+- [ ] Automatic recovery
+
+---
+
 # 🟡 Medium Priority
 
 ## Trading Profiles
@@ -395,6 +515,57 @@ Future
 - [ ] Dynamic Market Weights
 - [ ] AI Weight Optimization
 - [ ] Historical Performance Weighting
+
+---
+
+## Presentation Layer
+
+Status: In Progress
+
+Current
+
+- ✅ ConsoleView
+- ✅ Separated presentation from business logic
+- ✅ Consistent context-based display methods
+
+Next
+
+- [ ] DiscordView
+- [ ] TelegramView
+- [ ] JSON Export
+- [ ] HTML Dashboard
+
+Future
+
+- [ ] Rich Terminal UI
+- [ ] Web Dashboard
+- [ ] Theme support
+
+---
+
+## Configuration
+
+Status: In Progress
+
+Current
+
+- ✅ Expanded Settings class
+- ✅ Scanner settings
+- ✅ Ranking settings
+- ✅ Display settings
+
+Next
+
+- [ ] Migrate Trade Filter
+- [ ] Migrate Trade Ranker
+- [ ] Migrate Presentation Layer
+
+Future
+
+- [ ] User Settings
+- [ ] Strategy Profiles
+- [ ] Desktop Configuration
+- [ ] Import / Export
 
 ---
 

@@ -12,14 +12,34 @@ class Scanner:
 
         results = []
 
+        errors = []
+
         for symbol in symbols:
 
-            context = MarketContext()
+            try:
 
-            context.symbol = symbol
+                context = MarketContext()
 
-            context = self.analyzer.analyze(context)
+                context.symbol = symbol
 
-            results.append(context)
+                context = self.analyzer.analyze(context)
 
-        return results
+                results.append(context)
+
+            except Exception as e:
+
+                errors.append({
+
+                    "symbol": symbol,
+
+                    "error": str(e),
+
+                })
+
+        return {
+
+            "results": results,
+
+            "errors": errors,
+
+        }

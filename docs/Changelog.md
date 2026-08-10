@@ -79,6 +79,17 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Confidence Engine
 - Watchlist Architecture
 - Scanner Engine
+- TradeFilter module
+- Trade candidate filtering pipeline
+- ScanSummary module
+- Scan statistics before filtering
+- Console summary display
+- TradeRanker module
+- Trade candidate prioritization
+- Top Trade Today summary
+- Fault-tolerant scanner
+- Per-symbol exception handling
+- Error reporting during scans
 
 ## Improved
 
@@ -89,6 +100,12 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Separation of Risk, Decision, and Planning responsibilities
 - Trade quality evaluation using confluence scoring
 - Analyzer can now process multiple symbols through a unified scanner
+- Scanner output now supports filtering before presentation.
+- Scanner now reports overall market conditions even when no trades qualify.
+- Trade candidates are now ranked before presentation.
+- Expanded Settings class to support automation modules.
+- Scanner now completes scans even when individual symbols fail.
+
 
 ## Fixed
 
@@ -100,3 +117,9 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Direction-aware stop loss
 - Multiple stop providers
 - Multiple take profit providers
+
+## Refactored
+
+- Moved terminal output from app.py into ConsoleView.
+- Separated presentation from business logic.
+- Began replacing hardcoded application values with centralized configuration.
