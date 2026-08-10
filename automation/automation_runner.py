@@ -6,6 +6,7 @@ from summary.scan_summary import ScanSummary
 from filters.trade_filter import TradeFilter
 from ranking.trade_ranker import TradeRanker
 from presentation.console_view import ConsoleView
+from alerts.alert_manager import AlertManager
 from watchlists.default import WATCHLIST
 
 
@@ -24,6 +25,8 @@ class AutomationRunner:
         self.trade_ranker = TradeRanker()
 
         self.console_view = ConsoleView()
+
+        self.alert_manager = AlertManager()
 
     def run_once(self):
 
@@ -73,9 +76,17 @@ class AutomationRunner:
 
         results = self.trade_ranker.rank(results)
 
+        alert_results = []
+
+        for context in results:
+
+            if self.alert_manager.should_alert(context):
+
+                alert_results.append(context)
+
         self.console_view.display(
 
-            results,
+            alert_results,
 
             summary,
 

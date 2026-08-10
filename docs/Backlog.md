@@ -477,6 +477,31 @@ Future
 
 ---
 
+## Alert Manager
+
+Status: In Progress
+
+Current
+
+- ✅ First-time alerts
+- ✅ Decision change detection
+- ✅ Confidence improvement detection
+
+Next
+
+- [ ] Alert cooldown
+- [ ] Alert expiration
+- [ ] Alert history
+- [ ] Configurable thresholds
+
+Future
+
+- [ ] Strategy-aware alerts
+- [ ] Multi-channel routing
+- [ ] Smart alert grouping
+
+---
+
 # 🟡 Medium Priority
 
 ## Trading Profiles

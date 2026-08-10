@@ -98,6 +98,9 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - AutomationRunner workflow orchestration.
 - Continuous automation mode.
 - Shared scan execution pipeline.
+- AlertManager
+- Duplicate alert prevention
+- Confidence-based alert updates
 
 
 ## Improved
@@ -119,6 +122,7 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Application execution is now separated from scheduling.
 - Simplified application entry point.
 - AutomationRunner now supports both single-run and continuous execution.
+- Automation now reports only new or improved trade opportunities.
 
 
 ## Fixed
