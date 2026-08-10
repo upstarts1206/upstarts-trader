@@ -95,6 +95,7 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Configurable scan interval
 - Dynamic next scan calculation
 - AutomationRunner abstraction
+- AutomationRunner workflow orchestration.
 
 
 ## Improved
@@ -114,6 +115,7 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Scan execution now routes through the scheduler.
 - Scheduler now derives timing from application settings.
 - Application execution is now separated from scheduling.
+- Simplified application entry point.
 
 
 ## Fixed
@@ -132,3 +134,4 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Moved terminal output from app.py into ConsoleView.
 - Separated presentation from business logic.
 - Began replacing hardcoded application values with centralized configuration.
+- Moved scan workflow from app.py into AutomationRunner.

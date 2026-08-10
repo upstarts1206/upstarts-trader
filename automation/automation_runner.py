@@ -1,11 +1,9 @@
-import time
-
-from filters.trade_filter import TradeFilter
-from presentation.console_view import ConsoleView
-from ranking.trade_ranker import TradeRanker
 from scanner.scanner import Scanner
 from scheduler.scan_scheduler import ScanScheduler
 from summary.scan_summary import ScanSummary
+from filters.trade_filter import TradeFilter
+from ranking.trade_ranker import TradeRanker
+from presentation.console_view import ConsoleView
 from watchlists.default import WATCHLIST
 
 
@@ -38,12 +36,17 @@ class AutomationRunner:
         self.scheduler.mark_scan_complete()
 
         results = scan["results"]
+
         errors = scan["errors"]
 
         summary = self.scan_summary.generate(
+
             results,
+
             errors,
-            self.scheduler
+
+            self.scheduler,
+
         )
 
         results = self.trade_filter.filter(results)
@@ -51,7 +54,11 @@ class AutomationRunner:
         results = self.trade_ranker.rank(results)
 
         self.console_view.display(
+
             results,
+
             summary,
-            errors
+
+            errors,
+
         )

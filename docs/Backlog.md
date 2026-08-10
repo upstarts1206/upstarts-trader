@@ -458,6 +458,8 @@ Status: In Progress
 Current
 
 - ✅ Single execution runner
+- ✅ Workflow orchestration
+- ✅ Scheduler integration
 
 Next
 
@@ -470,6 +472,7 @@ Future
 
 - [ ] Windows Service
 - [ ] Linux Daemon
+- [ ] Docker deployment
 
 ---
 
