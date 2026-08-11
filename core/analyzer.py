@@ -22,15 +22,15 @@ class Analyzer:
 
         self.market_state = MarketState()
 
-        self.signal = Signal()
-
         self.risk = RiskEngine()
 
         self.session_engine = SessionEngine()
 
-        self.confluence_engine = ConfluenceEngine()   
+        self.bias_engine = BiasEngine()
 
-        self.bias_engine = BiasEngine()     
+        self.signal = Signal()
+
+        self.confluence_engine = ConfluenceEngine()
 
         self.setup_engine = SetupEngine()
 
@@ -46,22 +46,21 @@ class Analyzer:
         # Market Data
         # -------------------------
 
-         context.data = self.pipeline.run(context.symbol)
-         context.latest = context.data.iloc[-1]
+        context.data = self.pipeline.run(context.symbol)
+        context.latest = context.data.iloc[-1]
 
         # -------------------------
         # Analysis
         # -------------------------
 
-         context.summary = self.summary.generate(context.latest)
-         context.state = self.market_state.generate(context.summary)
-         context.signal = self.signal.analyze(context)
+        context.summary = self.summary.generate(context.latest)
+        context.state = self.market_state.generate(context.summary)
 
         # -------------------------
         # Risk
         # -------------------------
 
-         context.risk = self.risk.analyze(
+        context.risk = self.risk.analyze(
             account_balance=10000,
             entry=context.latest["close"],
             risk_percent=0.01,
@@ -72,42 +71,48 @@ class Analyzer:
         # Session
         # -------------------------
 
-         context.session = self.session_engine.detect()
-
-        # -------------------------
-        # Confluence
-        # -------------------------
-
-         context.confluence = self.confluence_engine.analyze(context) 
+        context.session = self.session_engine.detect()
 
         # -------------------------
         # Market Bias
         # -------------------------
 
-         context.bias = self.bias_engine.analyze(context) 
+        context.bias = self.bias_engine.analyze(context)
 
-        # ------------------------
+        # -------------------------
+        # Signal
+        # -------------------------
+
+        context.signal = self.signal.analyze(context)
+
+        # -------------------------
+        # Confluence
+        # -------------------------
+
+        context.confluence = self.confluence_engine.analyze(context)
+
+        # -------------------------
         # Setup
-        # ------------------------
-        
-         context.setup = self.setup_engine.detect(context)
+        # -------------------------
+
+        context.setup = self.setup_engine.detect(context)
 
         # -------------------------
         # Decision
         # -------------------------
 
-         context.decision = self.decision_engine.decide(context)
+        context.decision = self.decision_engine.decide(context)
 
         # -------------------------
         # Trade Plan
         # -------------------------
 
-         context.trade_plan = self.trade_planner.build(context)
+        context.trade_plan = self.trade_planner.build(context)
 
         # -------------------------
         # Validation
         # -------------------------
 
-         context.validation = self.trade_validator.validate(context)
+        context.validation = self.trade_validator.validate(context)
 
-         return context
+        return context
