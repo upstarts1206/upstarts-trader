@@ -1,0 +1,6 @@
+Timestamp,Symbol,Direction,Signal,Decision,Confidence,Bullish Score,Bearish Score,Risk Reward,Passed Validation
+,BTCUSDT,Bearish,SELL,SKIP,50,0,3,0.06,False
+,ETHUSDT,Bearish,SELL,SKIP,50,0,3,1.48,False
+,SOLUSDT,Bearish,SELL,SKIP,50,0,3,0.92,False
+,XRPUSDT,Bearish,SELL,SKIP,50,1,2,0.58,False
+,HYPEUSDT,Bullish,BUY,SKIP,50,2,1,1.25,False

@@ -6,11 +6,7 @@ class MarketStructure:
 
     def analyze(self, df: pd.DataFrame):
 
-        df = self.find_swings(df)
-
-        df = self.detect_structure(df)
-
-        return df
+        return self.find_swings(df)
 
     def find_swings(
         self,
@@ -28,6 +24,10 @@ class MarketStructure:
             left_candles = df.iloc[i - lookback:i]
             right_candles = df.iloc[i + 1:i + lookback + 1]
 
+            # -------------------------
+            # Swing High
+            # -------------------------
+
             if (
                 current["high"] > left_candles["high"].max()
                 and current["high"] > right_candles["high"].max()
@@ -35,23 +35,15 @@ class MarketStructure:
 
                 df.at[df.index[i], "swing_high"] = True
 
+            # -------------------------
+            # Swing Low
+            # -------------------------
+
             if (
                 current["low"] < left_candles["low"].min()
                 and current["low"] < right_candles["low"].min()
             ):
 
                 df.at[df.index[i], "swing_low"] = True
-
-        return df
-
-    def detect_structure(self, df: pd.DataFrame):
-
-        df["structure"] = None
-
-        current_structure = "Bullish"
-
-        for i in range(len(df)):
-
-            df.at[df.index[i], "structure"] = current_structure
 
         return df
