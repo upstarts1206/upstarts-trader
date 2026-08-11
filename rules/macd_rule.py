@@ -3,22 +3,22 @@ class MACDRule:
     def check(self, context):
 
         market = context.summary
-        bias = context.bias["direction"]
+        direction = context.bias["direction"]
 
-        if bias == "BUY":
+        if direction == "Bullish":
 
             if market["macd"] > 0:
 
-                return True, "✅ MACD supports BUY bias"
+                return True, "✅ MACD supports Bullish bias"
 
-            return False, "❌ MACD rejects BUY bias"
+            return False, "❌ MACD rejects Bullish bias"
 
-        elif bias == "SELL":
+        elif direction == "Bearish":
 
             if market["macd"] < 0:
 
-                return True, "✅ MACD supports SELL bias"
+                return True, "✅ MACD supports Bearish bias"
 
-            return False, "❌ MACD rejects SELL bias"
+            return False, "❌ MACD rejects Bearish bias"
 
         return False, "⚪ Neutral Bias"

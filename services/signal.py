@@ -12,7 +12,6 @@ class Signal:
     def analyze(self, context):
 
         score = 0
-
         reasons = []
 
         for rule in self.rules:
@@ -27,7 +26,19 @@ class Signal:
 
         confidence = int(score / len(self.rules) * 100)
 
-        signal = "BUY" if score >= 2 else "WAIT"
+        direction = context.bias["direction"]
+
+        if direction == "Neutral":
+
+            signal = "WAIT"
+
+        elif score >= 2:
+
+            signal = "BUY" if direction == "Bullish" else "SELL"
+
+        else:
+
+            signal = "WAIT"
 
         return {
 
@@ -36,5 +47,7 @@ class Signal:
             "confidence": confidence,
 
             "reasons": reasons,
+
+            "direction": direction,
 
         }
