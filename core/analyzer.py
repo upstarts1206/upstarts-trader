@@ -10,6 +10,7 @@ from setups.engine import SetupEngine
 from decision.engine import DecisionEngine
 from planner.trade_planner import TradePlanner
 from validation.trade_validator import TradeValidator
+from validation.trade_review import TradeReview
 
 
 class Analyzer:
@@ -39,6 +40,8 @@ class Analyzer:
         self.trade_planner = TradePlanner()
 
         self.trade_validator = TradeValidator()
+
+        self.trade_review = TradeReview()
 
     def analyze(self, context):
 
@@ -114,5 +117,7 @@ class Analyzer:
         # -------------------------
 
         context.validation = self.trade_validator.validate(context)
+
+        context.review = self.trade_review.build(context)
 
         return context

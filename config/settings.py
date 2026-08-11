@@ -85,3 +85,5 @@ class Settings:
     SHOW_SCAN_SUMMARY = True
 
     SHOW_TOP_TRADE = True
+
+    DEBUG_MODE = True
