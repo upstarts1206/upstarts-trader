@@ -86,10 +86,12 @@ class AutomationRunner:
 
         self.console_view.display(
 
-            trade_alerts,
+            results=trade_alerts,
 
-            summary,
+            summary=summary,
 
-            errors,
+            errors=errors,
+
+            all_results=results,
 
         )

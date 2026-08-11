@@ -2,7 +2,11 @@ from config.settings import Settings
 
 class ConsoleView:
 
-    def display(self, results, summary, errors):
+    def display(self, results, summary, errors, all_results=None,):
+
+        if Settings.DEBUG_MODE and all_results:
+
+            self.display_debug(all_results)
 
         if Settings.SHOW_SCAN_SUMMARY:
 
@@ -301,6 +305,81 @@ class ConsoleView:
         print(f"Stop Loss      : {plan['stop_loss']['price']}")
         print(f"Take Profit    : {plan['take_profit']['price']}")
 
+        print("=" * 50)
+
+    # -------------------------
+    # Debug
+    # -------------------------
+
+    def display_debug(self, contexts):
+
+        print()
+        print("=" * 50)
+        print("DEBUG SCAN")
+        print("=" * 50)
+
+        for context in contexts:
+
+            plan = context.trade_plan
+
+            print()
+            print("-" * 50)
+            print(f"{context.symbol}")
+
+            print(f"Direction       : {plan['direction']}")
+            print(f"Signal          : {plan['signal']}")
+            print(f"Decision        : {plan['decision']}")
+
+            print()
+
+            print(f"Bullish Score   : {plan['bullish_score']}")
+            print(f"Bearish Score   : {plan['bearish_score']}")
+            print(f"Confidence      : {plan['decision_confidence']}%")
+            print(f"Confluence      : {plan['confluence_strength']}")
+
+            print()
+
+            print("Bullish Evidence")
+
+            if plan["bullish_reasons"]:
+
+                for reason in plan["bullish_reasons"]:
+
+                    print(f"  ✓ {reason}")
+
+            else:
+
+                print("  - None")
+
+            print()
+
+            print("Bearish Evidence")
+
+            if plan["bearish_reasons"]:
+
+                for reason in plan["bearish_reasons"]:
+
+                    print(f"  ✓ {reason}")
+
+            else:
+
+                print("  - None")
+
+            print()
+
+            print("Decision Reasons")
+
+            if context.decision["reasons"]:
+
+                for reason in context.decision["reasons"]:
+
+                    print(f"  • {reason}")
+
+            else:
+
+                print("  - None")    
+
+        print()
         print("=" * 50)
 
     # -------------------------
