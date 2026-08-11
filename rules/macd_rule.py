@@ -1,6 +1,8 @@
 class MACDRule:
 
-    def check(self, market):
+    def check(self, context):
+
+        market = context.summary
 
         if market["macd"] > 0:
 

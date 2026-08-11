@@ -55,7 +55,7 @@ class Analyzer:
 
          context.summary = self.summary.generate(context.latest)
          context.state = self.market_state.generate(context.summary)
-         context.signal = self.signal.analyze(context.summary)
+         context.signal = self.signal.analyze(context)
 
         # -------------------------
         # Risk

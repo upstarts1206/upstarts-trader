@@ -1,6 +1,8 @@
 class EMARule:
 
-    def check(self, market):
+    def check(self, context):
+
+        market = context.summary
 
         if market["ema20"] > market["ema50"]:
 

@@ -9,18 +9,20 @@ class Signal:
 
         self.rules = strategy.get_rules()
 
-    def analyze(self, market):
+    def analyze(self, context):
 
         score = 0
+
         reasons = []
 
         for rule in self.rules:
 
-            passed, reason = rule.check(market)
+            passed, reason = rule.check(context)
 
             reasons.append(reason)
 
             if passed:
+
                 score += 1
 
         confidence = int(score / len(self.rules) * 100)
@@ -28,7 +30,11 @@ class Signal:
         signal = "BUY" if score >= 2 else "WAIT"
 
         return {
+
             "signal": signal,
+
             "confidence": confidence,
+
             "reasons": reasons,
+
         }

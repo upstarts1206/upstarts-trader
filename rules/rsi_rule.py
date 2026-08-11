@@ -1,6 +1,8 @@
 class RSIRule:
 
-    def check(self, market):
+    def check(self, context):
+
+        market = context.summary
 
         if 40 <= market["rsi"] <= 70:
 

@@ -43,6 +43,24 @@ class BiasEngine:
                 reasons.append("-2 Bearish BOS")
 
         # -------------------------
+        # Change of Character
+        # -------------------------
+
+        if latest["choch"]:
+
+            if latest["choch_direction"] == "Bullish":
+
+                score += 2
+
+                reasons.append("+2 Bullish CHOCH")
+
+            elif latest["choch_direction"] == "Bearish":
+
+                score -= 2
+
+                reasons.append("-2 Bearish CHOCH")
+
+        # -------------------------
         # Final Bias
         # -------------------------
 
