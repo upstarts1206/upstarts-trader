@@ -1,26 +1,39 @@
+from models.timeframe import Timeframe
+
 class MarketContext:
 
     def __init__(self):
 
+        # --------------------------------------------------
         # Symbol
+        # --------------------------------------------------
 
         self.symbol = ""
 
-        # Raw Market Data
+        # --------------------------------------------------
+        # Version 1 (Current Engine)
+        # --------------------------------------------------
 
         self.data = None
-
-        self.timeframes = {}
-
-        # Market Session
-
-        self.session = None
-
-        # Current Candle
-
         self.latest = None
 
-        # Analysis
+        # --------------------------------------------------
+        # Version 2 (Multi-Timeframe Engine)
+        # --------------------------------------------------
+
+        self.timeframes = {
+
+            "macro": Timeframe("macro"),
+
+            "structure": Timeframe("structure"),
+
+            "entry": Timeframe("entry"),
+
+        }
+
+        # --------------------------------------------------
+        # Shared Analysis
+        # --------------------------------------------------
 
         self.summary = None
 
@@ -28,20 +41,28 @@ class MarketContext:
 
         self.signal = None
 
-        self.risk = None
-
-        self.trade_plan = None
-
-        self.decision = None
-
-        self.validation = None
+        self.bias = None
 
         self.confluence = None
 
         self.setup = None
 
-        self.events = []
+        self.decision = None
 
-        # Trading
+        self.risk = None
+
+        self.validation = None
 
         self.trade_plan = None
+
+        # --------------------------------------------------
+        # Market Session
+        # --------------------------------------------------
+
+        self.session = None
+
+        # --------------------------------------------------
+        # Misc
+        # --------------------------------------------------
+
+        self.events = []

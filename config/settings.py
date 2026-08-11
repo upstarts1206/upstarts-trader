@@ -6,12 +6,24 @@ class Settings:
 
     SYMBOL = "SOLUSDT"
 
-    TIMEFRAMES = [
-        "15",
-        "60",
-        "240"
-    ]
+    TIMEFRAMES = {
 
+        # Higher Timeframe
+        # Determines overall market bias
+
+        "macro": "240",
+
+        # Intermediate Timeframe
+        # Determines market structure
+
+        "structure": "60",
+
+        # Lower Timeframe
+        # Used for entries
+
+        "entry": "15",
+
+    }
     # -------------------------
     # Indicators
     # -------------------------
