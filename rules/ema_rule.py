@@ -3,9 +3,22 @@ class EMARule:
     def check(self, context):
 
         market = context.summary
+        bias = context.bias["direction"]
 
-        if market["ema20"] > market["ema50"]:
+        if bias == "BUY":
 
-            return True, "✅ EMA20 is above EMA50"
+            if market["ema20"] > market["ema50"]:
 
-        return False, "❌ EMA20 is below EMA50"
+                return True, "✅ EMA supports BUY bias"
+
+            return False, "❌ EMA rejects BUY bias"
+
+        elif bias == "SELL":
+
+            if market["ema20"] < market["ema50"]:
+
+                return True, "✅ EMA supports SELL bias"
+
+            return False, "❌ EMA rejects SELL bias"
+
+        return False, "⚪ Neutral Bias"
