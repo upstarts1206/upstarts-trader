@@ -674,6 +674,17 @@ Status: Planned
 
 ---
 
+## Alert Manager
+
+Status: In Progress
+
+Future
+
+- [ ] Automatically expire stale alerts after a configurable period
+- [ ] Persist alert history across restarts
+
+---
+
 # 🔵 Low Priority
 
 ## AI Advisor

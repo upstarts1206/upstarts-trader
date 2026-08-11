@@ -142,3 +142,4 @@ The format is inspired by "Keep a Changelog", but focused on product evolution r
 - Separated presentation from business logic.
 - Began replacing hardcoded application values with centralized configuration.
 - Moved scan workflow from app.py into AutomationRunner.
+- Renamed `scan` to `scan_result` in `AutomationRunner` for improved readability.

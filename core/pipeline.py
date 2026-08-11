@@ -5,7 +5,6 @@ from indicators.macd import MACD
 from analysis.structure import MarketStructure
 from analysis.bos import BreakOfStructure
 from analysis.choch import ChangeOfCharacter
-from analysis.liquidity import LiquiditySweep
 from analysis.fvg import FairValueGap
 from analysis.order_block import OrderBlock
 from analysis.premium_discount import PremiumDiscount
@@ -28,8 +27,6 @@ class Pipeline:
         self.bos = BreakOfStructure()
 
         self.choch = ChangeOfCharacter()
-
-        self.liquidity = LiquiditySweep()
 
         self.fvg = FairValueGap()
 

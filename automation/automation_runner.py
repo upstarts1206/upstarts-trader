@@ -34,7 +34,7 @@ class AutomationRunner:
 
             return
 
-        self.execute_scan()
+        self.execute_scan_cycle()
 
     def run_forever(self):
 
@@ -48,19 +48,19 @@ class AutomationRunner:
 
             if self.scheduler.should_scan():
 
-                self.execute_scan()
+                self.execute_scan_cycle()
 
             time.sleep(1)
 
-    def execute_scan(self):
+    def execute_scan_cycle(self):
 
-        scan = self.scanner.scan(WATCHLIST)
+        scan_result = self.scanner.scan(WATCHLIST)
 
         self.scheduler.mark_scan_complete()
 
-        results = scan["results"]
+        results = scan_result["results"]
 
-        errors = scan["errors"]
+        errors = scan_result["errors"]
 
         summary = self.scan_summary.generate(
 
@@ -72,21 +72,21 @@ class AutomationRunner:
 
         )
 
-        results = self.trade_filter.filter(results)
+        trade_candidates = self.trade_filter.filter(results)
 
-        results = self.trade_ranker.rank(results)
+        trade_candidates = self.trade_ranker.rank(trade_candidates)
 
-        alert_results = []
+        trade_alerts = []
 
-        for context in results:
+        for context in trade_candidates:
 
             if self.alert_manager.should_alert(context):
 
-                alert_results.append(context)
+                trade_alerts.append(context)
 
         self.console_view.display(
 
-            alert_results,
+            trade_alerts,
 
             summary,
 

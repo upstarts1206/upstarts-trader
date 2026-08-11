@@ -13,18 +13,18 @@ class MarketStructure:
 
             current = df.iloc[i]
 
-            left = df.iloc[i - lookback:i]
-            right = df.iloc[i + 1:i + lookback + 1]
+            left_candles = df.iloc[i - lookback:i]
+            right_candles = df.iloc[i + 1:i + lookback + 1]
 
             if (
-                current["high"] > left["high"].max()
-                and current["high"] > right["high"].max()
+                current["high"] > left_candles["high"].max()
+                and current["high"] > right_candles["high"].max()
             ):
                 df.at[df.index[i], "swing_high"] = True
 
             if (
-                current["low"] < left["low"].min()
-                and current["low"] < right["low"].min()
+                current["low"] < left_candles["low"].min()
+                and current["low"] < right_candles["low"].min()
             ):
                 df.at[df.index[i], "swing_low"] = True
 

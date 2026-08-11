@@ -8,32 +8,35 @@ class LiquiditySweep:
         df["liquidity_sweep"] = False
         df["liquidity_side"] = None
 
-        for i in range(2, len(df)):
+        last_swing_high = None
+        last_swing_low = None
+
+        for i in range(len(df)):
 
             current = df.iloc[i]
-            previous = df.iloc[i - 1]
 
-            # -------------------------
-            # High Sweep
-            # -------------------------
+            # Update latest swing levels
+            if current["swing_high"]:
+                last_swing_high = current["high"]
 
+            if current["swing_low"]:
+                last_swing_low = current["low"]
+
+            # Bullish Liquidity Sweep
             if (
-                current["high"] > previous["high"]
-                and current["close"] < previous["high"]
+                last_swing_high is not None
+                and current["high"] > last_swing_high
+                and current["close"] < last_swing_high
             ):
-
                 df.at[df.index[i], "liquidity_sweep"] = True
                 df.at[df.index[i], "liquidity_side"] = "Buy Side"
 
-            # -------------------------
-            # Low Sweep
-            # -------------------------
-
-            elif (
-                current["low"] < previous["low"]
-                and current["close"] > previous["low"]
+            # Bearish Liquidity Sweep
+            if (
+                last_swing_low is not None
+                and current["low"] < last_swing_low
+                and current["close"] > last_swing_low
             ):
-
                 df.at[df.index[i], "liquidity_sweep"] = True
                 df.at[df.index[i], "liquidity_side"] = "Sell Side"
 

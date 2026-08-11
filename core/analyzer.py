@@ -1,16 +1,15 @@
-from multiprocessing import context
-
 from core.pipeline import Pipeline
 from services.summary import Summary
-from services.signal import Signal
 from services.state import MarketState
+from services.signal import Signal
 from risk.engine import RiskEngine
-from planner.trade_planner import TradePlanner
-from decision.engine import DecisionEngine
-from validation.trade_validator import TradeValidator
-from confluence.engine import ConfluenceEngine
 from sessions.engine import SessionEngine
+from confluence.engine import ConfluenceEngine
+from bias.engine import BiasEngine
 from setups.engine import SetupEngine
+from decision.engine import DecisionEngine
+from planner.trade_planner import TradePlanner
+from validation.trade_validator import TradeValidator
 
 
 class Analyzer:
@@ -21,23 +20,25 @@ class Analyzer:
 
         self.summary = Summary()
 
-        self.signal = Signal()
+        self.market_state = MarketState()
 
-        self.state = MarketState()
+        self.signal = Signal()
 
         self.risk = RiskEngine()
 
         self.session_engine = SessionEngine()
 
-        self.setup_engine = SetupEngine()
+        self.confluence_engine = ConfluenceEngine()   
 
-        self.trade_planner = TradePlanner()
+        self.bias_engine = BiasEngine()     
+
+        self.setup_engine = SetupEngine()
 
         self.decision_engine = DecisionEngine()
 
-        self.trade_validator = TradeValidator()
+        self.trade_planner = TradePlanner()
 
-        self.confluence_engine = ConfluenceEngine()
+        self.trade_validator = TradeValidator()
 
     def analyze(self, context):
 
@@ -53,7 +54,7 @@ class Analyzer:
         # -------------------------
 
          context.summary = self.summary.generate(context.latest)
-         context.state = self.state.generate(context.summary)
+         context.state = self.market_state.generate(context.summary)
          context.signal = self.signal.analyze(context.summary)
 
         # -------------------------
@@ -78,6 +79,12 @@ class Analyzer:
         # -------------------------
 
          context.confluence = self.confluence_engine.analyze(context) 
+
+        # -------------------------
+        # Market Bias
+        # -------------------------
+
+         context.bias = self.bias_engine.analyze(context) 
 
         # ------------------------
         # Setup

@@ -10,9 +10,9 @@ class Scanner:
 
     def scan(self, symbols):
 
-        results = []
+        scan_results = []
 
-        errors = []
+        scan_errors = []
 
         for symbol in symbols:
 
@@ -24,11 +24,11 @@ class Scanner:
 
                 context = self.analyzer.analyze(context)
 
-                results.append(context)
+                scan_results.append(context)
 
             except Exception as e:
 
-                errors.append({
+                scan_errors.append({
 
                     "symbol": symbol,
 
@@ -38,8 +38,8 @@ class Scanner:
 
         return {
 
-            "results": results,
+            "results": scan_results,
 
-            "errors": errors,
+            "errors": scan_errors,
 
         }
