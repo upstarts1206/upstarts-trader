@@ -1,3 +1,5 @@
+import traceback
+
 from core.analyzer import Analyzer
 from models.market_context import MarketContext
 
@@ -27,6 +29,8 @@ class Scanner:
                 scan_results.append(context)
 
             except Exception as e:
+
+                traceback.print_exc()
 
                 scan_errors.append({
 

@@ -74,6 +74,12 @@ class Analyzer:
         context.session = self.session_engine.detect()
 
         # -------------------------
+        # Confluence
+        # -------------------------
+
+        context.confluence = self.confluence_engine.analyze(context)
+
+        # -------------------------
         # Market Bias
         # -------------------------
 
@@ -84,12 +90,6 @@ class Analyzer:
         # -------------------------
 
         context.signal = self.signal.analyze(context)
-
-        # -------------------------
-        # Confluence
-        # -------------------------
-
-        context.confluence = self.confluence_engine.analyze(context)
 
         # -------------------------
         # Setup

@@ -2,90 +2,31 @@ class BiasEngine:
 
     def analyze(self, context):
 
-        score = 0
+        bullish_score = context.confluence["bullish_score"]
+        bearish_score = context.confluence["bearish_score"]
 
-        reasons = []
+        if bullish_score > bearish_score:
 
-        latest = context.latest
+            direction = "Bullish"
 
-        # -------------------------
-        # Trend
-        # -------------------------
+        elif bearish_score > bullish_score:
 
-        if context.state["trend"] == "Bullish":
-
-            score += 1
-
-            reasons.append("+1 Bullish Trend")
+            direction = "Bearish"
 
         else:
 
-            score -= 1
-
-            reasons.append("-1 Bearish Trend")
-
-        # -------------------------
-        # Break of Structure
-        # -------------------------
-
-        if latest["confirmed_bos"]:
-
-            if latest["bos_direction"] == "Bullish":
-
-                score += 2
-
-                reasons.append("+2 Bullish BOS")
-
-            elif latest["bos_direction"] == "Bearish":
-
-                score -= 2
-
-                reasons.append("-2 Bearish BOS")
-
-        # -------------------------
-        # Change of Character
-        # -------------------------
-
-        if latest["choch"]:
-
-            if latest["choch_direction"] == "Bullish":
-
-                score += 2
-
-                reasons.append("+2 Bullish CHOCH")
-
-            elif latest["choch_direction"] == "Bearish":
-
-                score -= 2
-
-                reasons.append("-2 Bearish CHOCH")
-
-        # -------------------------
-        # Final Bias
-        # -------------------------
-
-        if score > 0:
-
-            direction = "BUY"
-
-        elif score < 0:
-
-            direction = "SELL"
-
-        else:
-
-            direction = "NEUTRAL"
-
-        confidence = abs(score)
+            direction = "Neutral"
 
         return {
 
             "direction": direction,
 
-            "score": score,
+            "bullish_score": bullish_score,
 
-            "confidence": confidence,
+            "bearish_score": bearish_score,
 
-            "reasons": reasons,
+            "difference": abs(
+                bullish_score - bearish_score
+            ),
 
         }
