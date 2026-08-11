@@ -282,11 +282,24 @@ class ConsoleView:
         print("TOP TRADE TODAY")
         print("=" * 50)
 
-        print(f"Symbol      : {plan['symbol']}")
-        print(f"Decision    : {plan['decision']}")
-        print(f"Confidence  : {plan['decision_confidence']}%")
-        print(f"Confluence  : {plan['confluence']['score']}/{plan['confluence']['max_score']}")
-        print(f"Risk/Reward : {plan['risk_reward']}R")
+        print(f"Symbol         : {plan['symbol']}")
+        print(f"Direction      : {plan['direction']}")
+        print(f"Signal         : {plan['signal']}")
+        print(f"Decision       : {plan['decision']}")
+        print()
+
+        print(f"Bullish Score  : {plan['bullish_score']}")
+        print(f"Bearish Score  : {plan['bearish_score']}")
+        print(f"Confluence     : {plan['confluence_strength']}")
+        print()
+
+        print(f"Confidence     : {plan['decision_confidence']}%")
+        print(f"Risk / Reward  : {plan['risk_reward']}R")
+        print()
+
+        print(f"Entry          : {plan['entry']}")
+        print(f"Stop Loss      : {plan['stop_loss']['price']}")
+        print(f"Take Profit    : {plan['take_profit']['price']}")
 
         print("=" * 50)
 
