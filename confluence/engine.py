@@ -5,136 +5,163 @@ class ConfluenceEngine:
 
     def analyze(self, context):
 
-        # --------------------------------------------------
-        # Legacy API
-        # --------------------------------------------------
-
-        score = 0
-
-        reasons = []
-
-        # --------------------------------------------------
-        # New API
-        # --------------------------------------------------
-
-        buy_score = 0
-
-        sell_score = 0
-
-        buy_reasons = []
-
-        sell_reasons = []
-
         latest = context.latest
 
-        # --------------------------------------------------
+        bullish_score = 0
+        bearish_score = 0
+
+        bullish_reasons = []
+        bearish_reasons = []
+
+        # -------------------------
         # Trend
-        # --------------------------------------------------
+        # -------------------------
 
         if context.state["trend"] == "Bullish":
 
-            score += Settings.TREND_WEIGHT
-            reasons.append("Bullish Trend")
+            bullish_score, bullish_reasons = self.add_evidence(
+                bullish_score,
+                bullish_reasons,
+                Settings.TREND_WEIGHT,
+                "Bullish Trend",
+            )
 
-            buy_score += Settings.TREND_WEIGHT
-            buy_reasons.append("Bullish Trend")
+        else:
 
-        elif context.state["trend"] == "Bearish":
+            bearish_score, bearish_reasons = self.add_evidence(
+                bearish_score,
+                bearish_reasons,
+                Settings.TREND_WEIGHT,
+                "Bearish Trend",
+            )
 
-            sell_score += Settings.TREND_WEIGHT
-            sell_reasons.append("Bearish Trend")
-
-        # --------------------------------------------------
+        # -------------------------
         # BOS
-        # --------------------------------------------------
+        # -------------------------
 
         if latest["confirmed_bos"]:
 
-            score += Settings.BOS_WEIGHT
-            reasons.append("Confirmed BOS")
-
             if latest["bos_direction"] == "Bullish":
 
-                buy_score += Settings.BOS_WEIGHT
-                buy_reasons.append("Bullish BOS")
+                bullish_score, bullish_reasons = self.add_evidence(
+                    bullish_score,
+                    bullish_reasons,
+                    Settings.BOS_WEIGHT,
+                    "Bullish BOS",
+                )
 
             elif latest["bos_direction"] == "Bearish":
 
-                sell_score += Settings.BOS_WEIGHT
-                sell_reasons.append("Bearish BOS")
+                bearish_score, bearish_reasons = self.add_evidence(
+                    bearish_score,
+                    bearish_reasons,
+                    Settings.BOS_WEIGHT,
+                    "Bearish BOS",
+                )
 
-        # --------------------------------------------------
+        # -------------------------
         # CHOCH
-        # --------------------------------------------------
+        # -------------------------
 
         if latest["choch"]:
 
             if latest["choch_direction"] == "Bullish":
 
-                buy_score += Settings.CHOCH_WEIGHT
-                buy_reasons.append("Bullish CHOCH")
+                bullish_score, bullish_reasons = self.add_evidence(
+                    bullish_score,
+                    bullish_reasons,
+                    Settings.CHOCH_WEIGHT,
+                    "Bullish CHOCH",
+                )
 
             elif latest["choch_direction"] == "Bearish":
 
-                sell_score += Settings.CHOCH_WEIGHT
-                sell_reasons.append("Bearish CHOCH")
+                bearish_score, bearish_reasons = self.add_evidence(
+                    bearish_score,
+                    bearish_reasons,
+                    Settings.CHOCH_WEIGHT,
+                    "Bearish CHOCH",
+                )
 
-        # --------------------------------------------------
+        # -------------------------
         # Fair Value Gap
-        # --------------------------------------------------
+        # -------------------------
 
         if latest["fvg"] == "Bullish":
 
-            score += Settings.FVG_WEIGHT
-            reasons.append("Bullish FVG")
-
-            buy_score += Settings.FVG_WEIGHT
-            buy_reasons.append("Bullish FVG")
+            bullish_score, bullish_reasons = self.add_evidence(
+                bullish_score,
+                bullish_reasons,
+                Settings.FVG_WEIGHT,
+                "Bullish FVG",
+            )
 
         elif latest["fvg"] == "Bearish":
 
-            sell_score += Settings.FVG_WEIGHT
-            sell_reasons.append("Bearish FVG")
+            bearish_score, bearish_reasons = self.add_evidence(
+                bearish_score,
+                bearish_reasons,
+                Settings.FVG_WEIGHT,
+                "Bearish FVG",
+            )
 
-        # --------------------------------------------------
+        # -------------------------
         # Premium / Discount
-        # --------------------------------------------------
+        # -------------------------
 
-        if context.summary["pd_zone"] == "Discount":
+        if latest["pd_zone"] == "Discount":
 
-            score += Settings.PREMIUM_DISCOUNT_WEIGHT
-            reasons.append("Discount Zone")
+            bullish_score, bullish_reasons = self.add_evidence(
+                bullish_score,
+                bullish_reasons,
+                Settings.PREMIUM_DISCOUNT_WEIGHT,
+                "Discount Zone",
+            )
 
-            buy_score += Settings.PREMIUM_DISCOUNT_WEIGHT
-            buy_reasons.append("Discount Zone")
+        elif latest["pd_zone"] == "Premium":
 
-        elif context.summary["pd_zone"] == "Premium":
+            bearish_score, bearish_reasons = self.add_evidence(
+                bearish_score,
+                bearish_reasons,
+                Settings.PREMIUM_DISCOUNT_WEIGHT,
+                "Premium Zone",
+            )
 
-            sell_score += Settings.PREMIUM_DISCOUNT_WEIGHT
-            sell_reasons.append("Premium Zone")
-
-        # --------------------------------------------------
+        # -------------------------
         # Liquidity Sweep
-        # --------------------------------------------------
+        # -------------------------
 
-        if context.summary["liquidity_sweep"]:
+        if latest["liquidity_sweep"]:
 
-            if context.summary["liquidity_side"] == "Sell Side":
+            if latest["liquidity_side"] == "Sell Side":
 
-                score += Settings.LIQUIDITY_WEIGHT
-                reasons.append("Sell Side Liquidity Sweep")
+                bullish_score, bullish_reasons = self.add_evidence(
+                    bullish_score,
+                    bullish_reasons,
+                    Settings.LIQUIDITY_WEIGHT,
+                    "Sell Side Liquidity Sweep",
+                )
 
-                buy_score += Settings.LIQUIDITY_WEIGHT
-                buy_reasons.append("Sell Side Liquidity Sweep")
+            elif latest["liquidity_side"] == "Buy Side":
 
-            elif context.summary["liquidity_side"] == "Buy Side":
+                bearish_score, bearish_reasons = self.add_evidence(
+                    bearish_score,
+                    bearish_reasons,
+                    Settings.LIQUIDITY_WEIGHT,
+                    "Buy Side Liquidity Sweep",
+                )
 
-                sell_score += Settings.LIQUIDITY_WEIGHT
-                sell_reasons.append("Buy Side Liquidity Sweep")
+        score = max(bullish_score, bearish_score)
+
+        reasons = (
+            bullish_reasons
+            if bullish_score >= bearish_score
+            else bearish_reasons
+        )
 
         return {
 
-            # Legacy API
+            # Legacy
 
             "score": score,
 
@@ -151,34 +178,41 @@ class ConfluenceEngine:
 
             "reasons": reasons,
 
-            # New API
+            # New
 
-            "buy_score": buy_score,
+            "bullish_score": bullish_score,
+            "bearish_score": bearish_score,
 
-            "sell_score": sell_score,
-
-            "buy_reasons": buy_reasons,
-
-            "sell_reasons": sell_reasons,
+            "bullish_reasons": bullish_reasons,
+            "bearish_reasons": bearish_reasons,
 
         }
+
+    def add_evidence(
+        self,
+        score,
+        reasons,
+        weight,
+        reason,
+    ):
+
+        score += weight
+        reasons.append(reason)
+
+        return score, reasons
 
     def get_strength(self, score):
 
         if score >= 10:
-
             return "Excellent"
 
         elif score >= 7:
-
             return "Strong"
 
         elif score >= 5:
-
             return "Moderate"
 
         elif score >= 3:
-
             return "Weak"
 
         return "Poor"
