@@ -25,32 +25,37 @@ class ConfluenceEngine:
         latest = context.latest
 
         # --------------------------------------------------
-        # Existing Logic
+        # Trend
         # --------------------------------------------------
 
-        #
-        # IMPORTANT
-        #
-        # Do NOT change the scoring logic yet.
-        #
-        # The existing implementation stays exactly as it is.
-        #
-        # For this lesson we are ONLY introducing
-        # the new contract.
-        #
-        # We'll migrate each rule one-by-one
-        # in the following lessons.
-        #
-
-        # -------------------------
-        # Trend
-        # -------------------------
-
         if context.state["trend"] == "Bullish":
+
+            # Legacy
 
             score += 1
 
             reasons.append("Bullish Trend")
+
+            # New
+
+            buy_score += 1
+
+            buy_reasons.append("Bullish Trend")
+
+        elif context.state["trend"] == "Bearish":
+
+            sell_score += 1
+
+            sell_reasons.append("Bearish Trend")
+
+        # --------------------------------------------------
+        # Existing Logic
+        # --------------------------------------------------
+
+        #
+        # Leave EVERYTHING below exactly as-is.
+        # We migrate one concept per lesson.
+        #
 
         # -------------------------
         # Signal
