@@ -9,6 +9,7 @@ class TradePlanner:
             # -------------------------
 
             "symbol": context.symbol,
+            "direction": context.bias["direction"],
             "entry": round(context.latest["close"], 2),
 
             # -------------------------
@@ -27,7 +28,7 @@ class TradePlanner:
             # -------------------------
 
             "signal": context.signal["signal"],
-            "confidence": context.signal["confidence"],
+            "signal_confidence": context.signal["confidence"],
 
             # -------------------------
             # Risk
@@ -39,7 +40,7 @@ class TradePlanner:
             "position_size": context.risk["position_size"],
             "valid_trade": context.risk["valid"],
 
-            #-------------------------
+            # -------------------------
             # Session
             # -------------------------
 
@@ -49,7 +50,11 @@ class TradePlanner:
             # Confluence
             # -------------------------
 
-            "confluence": context.confluence,
+            "bullish_score": context.confluence["bullish_score"],
+            "bearish_score": context.confluence["bearish_score"],
+            "confluence_strength": context.confluence["strength"],
+            "bullish_reasons": context.confluence["bullish_reasons"],
+            "bearish_reasons": context.confluence["bearish_reasons"],
 
             # -------------------------
             # Setup
