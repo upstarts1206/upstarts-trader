@@ -2,35 +2,55 @@ class ConfluenceEngine:
 
     def analyze(self, context):
 
+        # --------------------------------------------------
+        # Legacy API
+        # --------------------------------------------------
+
         score = 0
 
         reasons = []
 
+        # --------------------------------------------------
+        # New API
+        # --------------------------------------------------
+
+        buy_score = 0
+
+        sell_score = 0
+
+        buy_reasons = []
+
+        sell_reasons = []
+
         latest = context.latest
 
-        bias = context.bias["direction"]
+        # --------------------------------------------------
+        # Existing Logic
+        # --------------------------------------------------
+
+        #
+        # IMPORTANT
+        #
+        # Do NOT change the scoring logic yet.
+        #
+        # The existing implementation stays exactly as it is.
+        #
+        # For this lesson we are ONLY introducing
+        # the new contract.
+        #
+        # We'll migrate each rule one-by-one
+        # in the following lessons.
+        #
 
         # -------------------------
         # Trend
         # -------------------------
 
-        if (
-            bias == "BUY"
-            and context.state["trend"] == "Bullish"
-        ):
+        if context.state["trend"] == "Bullish":
 
             score += 1
 
-            reasons.append("Trend Supports BUY Bias")
-
-        elif (
-            bias == "SELL"
-            and context.state["trend"] == "Bearish"
-        ):
-
-            score += 1
-
-            reasons.append("Trend Supports SELL Bias")
+            reasons.append("Bullish Trend")
 
         # -------------------------
         # Signal
@@ -40,7 +60,7 @@ class ConfluenceEngine:
 
             score += 1
 
-            reasons.append("Signal Confirmed")
+            reasons.append("BUY Signal")
 
         # -------------------------
         # Risk
@@ -58,81 +78,48 @@ class ConfluenceEngine:
 
         if latest["confirmed_bos"]:
 
-            if latest["bos_direction"] == "Bullish" and bias == "BUY":
+            score += 1
 
-                score += 1
-
-                reasons.append("Bullish BOS")
-
-            elif latest["bos_direction"] == "Bearish" and bias == "SELL":
-
-                score += 1
-
-                reasons.append("Bearish BOS")
+            reasons.append("Confirmed BOS")
 
         # -------------------------
         # FVG
         # -------------------------
 
-        if latest["fvg"] == "Bullish" and bias == "BUY":
+        if latest["fvg"] == "Bullish":
 
             score += 1
 
             reasons.append("Bullish FVG")
 
-        elif latest["fvg"] == "Bearish" and bias == "SELL":
-
-            score += 1
-
-            reasons.append("Bearish FVG")
-
         # -------------------------
         # Premium / Discount
         # -------------------------
 
-        if (
-            context.summary["pd_zone"] == "Discount"
-            and bias == "BUY"
-        ):
+        if context.summary["pd_zone"] == "Discount":
 
             score += 1
 
             reasons.append("Discount Zone")
 
-        elif (
-            context.summary["pd_zone"] == "Premium"
-            and bias == "SELL"
-        ):
-
-            score += 1
-
-            reasons.append("Premium Zone")
-
         # -------------------------
         # Liquidity Sweep
         # -------------------------
 
-        if context.summary["liquidity_sweep"]:
+        if (
+            context.summary["liquidity_sweep"]
+            and context.summary["liquidity_side"] == "Sell Side"
+        ):
 
-            if (
-                context.summary["liquidity_side"] == "Sell Side"
-                and bias == "BUY"
-            ):
+            score += 1
 
-                score += 1
+            reasons.append("Sell Side Liquidity Sweep")
 
-                reasons.append("Sell Side Liquidity Sweep")
-
-            elif (
-                context.summary["liquidity_side"] == "Buy Side"
-                and bias == "SELL"
-            ):
-
-                score += 1
-
-                reasons.append("Buy Side Liquidity Sweep")
+        # --------------------------------------------------
 
         return {
+
+            # Legacy API
 
             "score": score,
 
@@ -141,6 +128,16 @@ class ConfluenceEngine:
             "strength": self.get_strength(score),
 
             "reasons": reasons,
+
+            # New API
+
+            "buy_score": buy_score,
+
+            "sell_score": sell_score,
+
+            "buy_reasons": buy_reasons,
+
+            "sell_reasons": sell_reasons,
 
         }
 
