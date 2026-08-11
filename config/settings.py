@@ -33,6 +33,24 @@ class Settings:
     BOS_CONFIRMATION = "immediate"
 
     # -------------------------
+    # Confluence
+    # -------------------------
+
+    TREND_WEIGHT = 2
+
+    BOS_WEIGHT = 3
+
+    CHOCH_WEIGHT = 3
+
+    LIQUIDITY_WEIGHT = 2
+
+    FVG_WEIGHT = 2
+
+    PREMIUM_DISCOUNT_WEIGHT = 1
+
+    ORDER_BLOCK_WEIGHT = 2
+
+    # -------------------------
     # Risk
     # -------------------------
 
