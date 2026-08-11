@@ -4,7 +4,19 @@ from config.settings import Settings
 
 class MarketStructure:
 
-    def find_swings(self, df: pd.DataFrame, lookback=Settings.SWING_LOOKBACK):
+    def analyze(self, df: pd.DataFrame):
+
+        df = self.find_swings(df)
+
+        df = self.detect_structure(df)
+
+        return df
+
+    def find_swings(
+        self,
+        df: pd.DataFrame,
+        lookback=Settings.SWING_LOOKBACK,
+    ):
 
         df["swing_high"] = False
         df["swing_low"] = False
@@ -20,12 +32,26 @@ class MarketStructure:
                 current["high"] > left_candles["high"].max()
                 and current["high"] > right_candles["high"].max()
             ):
+
                 df.at[df.index[i], "swing_high"] = True
 
             if (
                 current["low"] < left_candles["low"].min()
                 and current["low"] < right_candles["low"].min()
             ):
+
                 df.at[df.index[i], "swing_low"] = True
+
+        return df
+
+    def detect_structure(self, df: pd.DataFrame):
+
+        df["structure"] = None
+
+        current_structure = "Bullish"
+
+        for i in range(len(df)):
+
+            df.at[df.index[i], "structure"] = current_structure
 
         return df

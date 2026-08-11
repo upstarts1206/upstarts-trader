@@ -48,7 +48,7 @@ class Pipeline:
         df = self.ema.calculate(df, period=50)
         df = self.rsi.calculate(df, period=14)
         df = self.macd.calculate(df)
-        df = self.structure.find_swings(df)
+        df = self.structure.analyze(df)
         df = self.bos.detect(df)
         df = self.choch.detect(df)
         df = self.fvg.detect(df)
