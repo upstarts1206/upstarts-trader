@@ -120,16 +120,36 @@ class ConsoleView:
         plan = context.trade_plan
 
         print()
-        print("Confluence")
+        print("Market Thesis")
         print("-" * 24)
 
-        print(f"Strength       : {plan['confluence']['strength']}")
-        print(f"Score          : {plan['confluence']['score']}/{plan['confluence']['max_score']}")
+        print(f"Bullish Score  : {plan['bullish_score']}")
+        print(f"Bearish Score  : {plan['bearish_score']}")
+        print(f"Strength       : {plan['confluence_strength']}")
 
         print()
+        print("Bullish Evidence")
 
-        for reason in plan["confluence"]["reasons"]:
-            print(f"✓ {reason}")
+        if plan["bullish_reasons"]:
+
+            for reason in plan["bullish_reasons"]:
+                print(f"✓ {reason}")
+
+        else:
+
+            print("- None")
+
+        print()
+        print("Bearish Evidence")
+
+        if plan["bearish_reasons"]:
+
+            for reason in plan["bearish_reasons"]:
+                print(f"✓ {reason}")
+
+        else:
+
+            print("- None")
 
     # -------------------------
     # Setup
