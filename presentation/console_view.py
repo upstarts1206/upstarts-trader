@@ -54,15 +54,33 @@ class ConsoleView:
         print("-" * 24)
 
         print(f"Symbol         : {plan['symbol']}")
+        print(f"Direction      : {plan['direction']}")
         print(f"Trend          : {plan['trend']}")
         print(f"Momentum       : {plan['momentum']}")
         print(f"Strength       : {plan['strength']}")
         print(f"Session        : {plan['session']}")
+
+        print()
+        print(f"Entry Price    : {plan['entry']}")
         print(f"PD Zone        : {plan['pd_zone']}")
 
-        liquidity = plan["liquidity_side"] or "None"
+        liquidity = (
+            plan["liquidity_side"]
+            if plan["liquidity_sweep"]
+            else "None"
+        )
 
         print(f"Liquidity      : {liquidity}")
+
+        latest = context.latest
+
+        bos = latest["bos_direction"] if latest["bos"] else "None"
+        choch = latest["choch_direction"] if latest["choch"] else "None"
+        fvg = latest["fvg"] if latest["fvg"] else "None"
+
+        print(f"BOS            : {bos}")
+        print(f"CHOCH          : {choch}")
+        print(f"FVG            : {fvg}")
 
     # -------------------------
     # Signal
