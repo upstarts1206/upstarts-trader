@@ -4,31 +4,47 @@ class TradeValidator:
 
         errors = []
 
+        direction = context.trade_plan["direction"]
+
         entry = context.trade_plan["entry"]
-
         stop = context.trade_plan["stop_loss"]["price"]
-
         target = context.trade_plan["take_profit"]["price"]
 
         # -------------------------
-        # Stop Loss
+        # BUY Validation
         # -------------------------
 
-        if stop >= entry:
+        if direction == "Bullish":
 
-            errors.append(
-                "Stop Loss must be below Entry for BUY trades."
-            )
+            if stop >= entry:
+
+                errors.append(
+                    "Stop Loss must be below Entry for BUY trades."
+                )
+
+            if target <= entry:
+
+                errors.append(
+                    "Take Profit must be above Entry for BUY trades."
+                )
 
         # -------------------------
-        # Take Profit
+        # SELL Validation
         # -------------------------
 
-        if target <= entry:
+        elif direction == "Bearish":
 
-            errors.append(
-                "Take Profit must be above Entry for BUY trades."
-            )
+            if stop <= entry:
+
+                errors.append(
+                    "Stop Loss must be above Entry for SELL trades."
+                )
+
+            if target >= entry:
+
+                errors.append(
+                    "Take Profit must be below Entry for SELL trades."
+                )
 
         # -------------------------
         # Position Size
