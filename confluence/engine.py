@@ -6,15 +6,31 @@ class ConfluenceEngine:
 
         reasons = []
 
+        latest = context.latest
+
+        bias = context.bias["direction"]
+
         # -------------------------
         # Trend
         # -------------------------
 
-        if context.state["trend"] == "Bullish":
+        if (
+            bias == "BUY"
+            and context.state["trend"] == "Bullish"
+        ):
 
             score += 1
 
-            reasons.append("Bullish Trend")
+            reasons.append("Trend Supports BUY Bias")
+
+        elif (
+            bias == "SELL"
+            and context.state["trend"] == "Bearish"
+        ):
+
+            score += 1
+
+            reasons.append("Trend Supports SELL Bias")
 
         # -------------------------
         # Signal
@@ -24,7 +40,7 @@ class ConfluenceEngine:
 
             score += 1
 
-            reasons.append("BUY Signal")
+            reasons.append("Signal Confirmed")
 
         # -------------------------
         # Risk
@@ -40,46 +56,81 @@ class ConfluenceEngine:
         # BOS
         # -------------------------
 
-        latest = context.latest
-
         if latest["confirmed_bos"]:
 
-            score += 1
+            if latest["bos_direction"] == "Bullish" and bias == "BUY":
 
-            reasons.append("Confirmed BOS")
+                score += 1
+
+                reasons.append("Bullish BOS")
+
+            elif latest["bos_direction"] == "Bearish" and bias == "SELL":
+
+                score += 1
+
+                reasons.append("Bearish BOS")
 
         # -------------------------
         # FVG
         # -------------------------
 
-        if latest["fvg"] == "Bullish":
+        if latest["fvg"] == "Bullish" and bias == "BUY":
 
             score += 1
 
             reasons.append("Bullish FVG")
 
-        #-------------------------
-        # Premium/Discount Zone
-        #-------------------------
-
-        if context.summary["pd_zone"] == "Discount":
+        elif latest["fvg"] == "Bearish" and bias == "SELL":
 
             score += 1
 
-            reasons.append("Discount Zone")    
+            reasons.append("Bearish FVG")
 
-        #-------------------------
-        # Liquidity Sweep
-        #-------------------------
+        # -------------------------
+        # Premium / Discount
+        # -------------------------
 
         if (
-            context.summary["liquidity_sweep"]
-            and context.summary["liquidity_side"] == "Sell Side"
+            context.summary["pd_zone"] == "Discount"
+            and bias == "BUY"
         ):
 
             score += 1
 
-            reasons.append("Sell Side Liquidity Sweep")    
+            reasons.append("Discount Zone")
+
+        elif (
+            context.summary["pd_zone"] == "Premium"
+            and bias == "SELL"
+        ):
+
+            score += 1
+
+            reasons.append("Premium Zone")
+
+        # -------------------------
+        # Liquidity Sweep
+        # -------------------------
+
+        if context.summary["liquidity_sweep"]:
+
+            if (
+                context.summary["liquidity_side"] == "Sell Side"
+                and bias == "BUY"
+            ):
+
+                score += 1
+
+                reasons.append("Sell Side Liquidity Sweep")
+
+            elif (
+                context.summary["liquidity_side"] == "Buy Side"
+                and bias == "SELL"
+            ):
+
+                score += 1
+
+                reasons.append("Buy Side Liquidity Sweep")
 
         return {
 
