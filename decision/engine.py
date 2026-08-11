@@ -10,28 +10,32 @@ class DecisionEngine:
     def decide(self, context):
 
         score = 0
-
         reasons = []
-
-        # -------------------------
-        # Trend
-        # -------------------------
-
-        if context.state["trend"] == "Bullish":
-
-            score += 30
-
-            reasons.append("+30 Trend is Bullish")
 
         # -------------------------
         # Signal
         # -------------------------
 
-        if context.signal["signal"] == "BUY":
+        signal = context.signal["signal"]
 
-            score += 25
+        if signal == "BUY":
 
-            reasons.append("+25 BUY Signal")
+            score += 40
+            reasons.append("+40 BUY Signal")
+
+        elif signal == "SELL":
+
+            score += 40
+            reasons.append("+40 SELL Signal")
+
+        # -------------------------
+        # Confluence
+        # -------------------------
+
+        if context.confluence["strength"] in ["Strong", "Excellent"]:
+
+            score += 30
+            reasons.append("+30 Strong Confluence")
 
         # -------------------------
         # Risk
@@ -39,19 +43,8 @@ class DecisionEngine:
 
         if context.risk["valid"]:
 
-            score += 25
-
-            reasons.append("+25 Risk Accepted")
-
-        # -------------------------
-        # Confluence
-        # -------------------------
-
-        if context.confluence["score"] >= 4:
-
-            score += 10
-
-            reasons.append("+10 Strong Confluence")
+            score += 20
+            reasons.append("+20 Risk Accepted")
 
         # -------------------------
         # Session
@@ -60,14 +53,21 @@ class DecisionEngine:
         if context.session in ["London", "New York"]:
 
             score += 10
-
             reasons.append("+10 Active Session")
 
         confidence = self.confidence_engine.calculate(score)
 
-        if score >= 80:
+        # -------------------------
+        # Final Decision
+        # -------------------------
 
-            decision = "BUY"
+        if signal == "WAIT":
+
+            decision = "WAIT"
+
+        elif score >= 80:
+
+            decision = signal
 
         elif score >= 60:
 
