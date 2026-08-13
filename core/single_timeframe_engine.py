@@ -14,6 +14,7 @@ from decision.engine import DecisionEngine
 from planner.trade_planner import TradePlanner
 from validation.trade_validator import TradeValidator
 
+from analysis.events.event_engine import EventEngine
 
 class SingleTimeframeEngine:
 
@@ -24,6 +25,8 @@ class SingleTimeframeEngine:
         self.summary = Summary()
 
         self.market_state = MarketState()
+
+        self.event_engine = EventEngine()
 
         self.risk = RiskEngine()
 
@@ -70,6 +73,16 @@ class SingleTimeframeEngine:
         context.state = self.market_state.generate(
 
             context.summary
+
+        )
+
+        # ----------------------------------------
+        # Market Events
+        # ----------------------------------------
+
+        context.events = self.event_engine.generate(
+
+            context.data
 
         )
 
@@ -164,5 +177,13 @@ class SingleTimeframeEngine:
             context
 
         )
+
+        print()
+
+        print("MARKET EVENTS")
+
+        for event in context.events[-10:]:
+
+            print(event)
 
         return context

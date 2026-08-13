@@ -5,7 +5,7 @@ def main():
 
     runner = AutomationRunner()
 
-    runner.run_forever()
+    runner.run_once()
 
 
 if __name__ == "__main__":
