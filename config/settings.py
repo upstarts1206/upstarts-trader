@@ -99,3 +99,9 @@ class Settings:
     SHOW_TOP_TRADE = True
 
     DEBUG_MODE = True
+
+    # ----------------------------------------
+    # Engine
+    # ----------------------------------------
+
+    MULTI_TIMEFRAME = False

@@ -26,7 +26,9 @@ for name, tf in context.timeframes.items():
 
     print("-" * 30)
 
-    print(tf.state)
+    print("State:", tf.state)
+
+    print("Phase:", tf.phase)
 
 print()
 
